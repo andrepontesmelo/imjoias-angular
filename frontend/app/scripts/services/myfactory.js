@@ -20,7 +20,7 @@ angular.module('angularComSassApp')
 //      }
 //    };
 
-        return $resource('http://localhost\\:8080/angulardemorestful/rest/users', {}, {
+        return $resource('http://192.168.1.20\\:8080/backend/rest/users', {}, {
             query: {
                 method: 'GET',
                 params: {},

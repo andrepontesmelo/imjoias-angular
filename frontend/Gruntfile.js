@@ -28,6 +28,23 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+
+  deploy: {
+    liveservers: {
+      options:{
+        servers: [{
+          host: 'imj.ignorelist.com',
+          port: 9000,
+          username: 'root',
+          password: ''
+        }],
+        cmds_before_deploy: [""],
+        cmds_after_deploy: ["forever restart", ""],
+        deploy_path: '/srv/www/htdocs/angularimj'
+      }
+    }},
+
+
     // Project settings
     yeoman: appConfig,
 
