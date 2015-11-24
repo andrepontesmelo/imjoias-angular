@@ -11,7 +11,7 @@ angular.module('angularComSassApp')
   .controller('AboutCtrl', ['$scope', 'myFactory', function ($scope, myFactory) {
 
     myFactory.get({}, function (myFactory) {
-      $scope.users = myFactory.users;
+      $scope.pessoas = myFactory.pessoas;
     });
 
     $scope.awesomeThings = [

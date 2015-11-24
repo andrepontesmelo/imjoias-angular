@@ -1,6 +1,6 @@
 <label>Busca: <input ng-model="searchText"></label>
 
-(em {{ users.length }} registros)
+(em {{ pessoas.length }} registros)
 
 <table>
   <tr>
@@ -8,7 +8,7 @@
     <td style="background-color:#b5d592"><b>Nome</b></td>
     <td style="background-color:#b5d592"><b>Cidade</b></td>
   </tr>
-  <tr ng-repeat="x in users | filter:searchText | limitTo:20 track by $index  ">
+  <tr ng-repeat="x in pessoas | filter:searchText | limitTo:20 track by $index  ">
     <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.codigo }}</td>
     <td ng-if="$even">{{ x.codigo }}</td>
     <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.nome }}</td>
