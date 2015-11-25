@@ -1,24 +1,26 @@
-<label>Busca: <input ng-model="searchText"></label>
+<div class="input-group">
+  <span class="input-group-addon">
+    <span class="glyphicon glyphicon-search"></span>
+  </span>
 
-(em {{ pessoas.length }} registros)
+  <input type="search" ng-model="searchText" placeholder="Pesquise..." class="form-control" >
+</div>
 
-<table>
+
+<table class="table">
+  <thead>
   <tr>
-    <td style="background-color:#b5d592"><b>Código</b>    </td>
-    <td style="background-color:#b5d592"><b>Nome</b></td>
-    <td style="background-color:#b5d592"><b>Cidade</b></td>
+    <th><b>Código</b>    </th>
+    <th><b>Nome</b></th>
+    <th><b>Cidade</b></th>
   </tr>
+  </thead>
+  <tbody>
   <tr ng-repeat="x in pessoas | filter:searchText | limitTo:20 track by $index  ">
-    <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.codigo }}</td>
-    <td ng-if="$even">{{ x.codigo }}</td>
-    <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.nome }}</td>
-    <td ng-if="$even">{{ x.nome }}</td>
-    <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.cidade }}</td>
-    <td ng-if="$even">{{ x.cidade}}</td>
+    <td>{{ x.codigo }}</td>
+    <td>{{ x.nome }}</td>
+    <td>{{ x.cidade}}</td>
   </tr>
+  </tbody>
 </table>
-
-<!--<div ng-repeat="n in nomes | filter:searchText | limitTo:25 track by $index ">-->
-  <!--{{n}}-->
-<!--</div>-->
 

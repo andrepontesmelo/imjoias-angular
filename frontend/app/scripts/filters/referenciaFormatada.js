@@ -21,8 +21,9 @@ angular.module('angularComSassApp')
           input.substring(6, 8) + '.' +
           input.substring(8, 11);
 
-        if (input.length == 12)
+        if (input.length === 12) {
           resultado += '-' + input.substring(11, 12);
+        }
 
         return resultado;
       }

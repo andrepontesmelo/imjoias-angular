@@ -35,12 +35,12 @@
             <a class="navbar-brand" href="#/">AngularIMJ</a>
           </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+          <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="HeaderCtrl">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Início</a></li>
-              <li><a ng-href="#/pessoas">Pessoas</a></li>
-              <li><a ng-href="#/mercadorias">Mercadorias</a></li>
+              <li ng-class="{ active: isActive('/')}"><a href="#/">Início</a></li>
+              <li ng-class="{ active: isActive('/pessoas')}"><a ng-href="#/pessoas">Pessoas</a></li>
+              <li ng-class="{ active: isActive('/mercadorias')}"><a ng-href="#/mercadorias">Mercadorias</a></li>
             </ul>
           </div>
         </div>
@@ -86,11 +86,13 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/pessoas.js"></script>
         <script src="scripts/services/myfactory.js"></script>
-        <script src="scripts/controllers/mercadoria.js"></script>
+        <script src="scripts/controllers/mercadorias.js"></script>
         <script src="scripts/services/mercadoriaFactory.js"></script>
         <script src="scripts/filters/referenciaFormatada.js"></script>
+        <script src="scripts/controllers/mercadoria.js"></script>
+        <script src="scripts/controllers/header.js"></script>
         <!-- endbuild -->
 </body>
 </html>

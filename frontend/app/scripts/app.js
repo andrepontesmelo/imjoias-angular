@@ -26,11 +26,16 @@ angular
       })
       .when('/pessoas', {
         templateUrl: 'views/pessoas.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'PessoasCtrl',
+        controllerAs: 'pessoas'
       })
       .when('/mercadorias', {
         templateUrl: 'views/mercadorias.html',
+        controller: 'MercadoriasCtrl',
+        controllerAs: 'mercadorias'
+      })
+      .when('/mercadoria/:referenciaMercadoria', {
+        templateUrl: 'views/mercadoria.html',
         controller: 'MercadoriaCtrl',
         controllerAs: 'mercadoria'
       })

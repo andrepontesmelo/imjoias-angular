@@ -1,16 +1,22 @@
-<label>Busca: <input ng-model="searchText"></label>
+<div class="input-group">
+  <span class="input-group-addon">
+    <span class="glyphicon glyphicon-search"></span>
+  </span>
 
-(em {{ mercadorias.length }} registros)
+  <input type="search" ng-model="searchText" placeholder="Pesquise..." class="form-control" >
+</div>
 
-<table>
-  <tr>
-    <td style="background-color:#b5d592"><b>Referência</b>    </td>
-    <td style="background-color:#b5d592"><b>Faixa</b></td>
-  </tr>
-  <tr ng-repeat="x in mercadorias | filter:searchText | limitTo:20 track by $index  ">
-    <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.referencia | referenciaFormatada }}</td>
-    <td ng-if="$even">{{ x.referencia  | referenciaFormatada }}</td>
-    <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.faixa }}</td>
-    <td ng-if="$even">{{ x.faixa }}</td>
-  </tr>
+<table class="table">
+  <thread>
+    <tr>
+      <th>Referência</th>
+      <th>Faixa</th>
+    </tr>
+  </thread>
+  <tbody>
+    <tr ng-repeat="x in mercadorias | filter:searchText | limitTo:20 track by $index  ">
+      <td><a ng-href="#/mercadoria/{{x.referencia}}"> {{ x.referencia | referenciaFormatada }}</a></td>
+      <td>{{ x.faixa }}</td>
+    </tr>
+  </tbody>
 </table>

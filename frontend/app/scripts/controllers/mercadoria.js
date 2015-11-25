@@ -1,22 +1,17 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name angularComSassApp.controller:MercadoriaCtrl
- * @description
- * # MercadoriaCtrl
- * Controller of the angularComSassApp
- */
 angular.module('angularComSassApp')
-  .controller('MercadoriaCtrl', ['$scope', 'mercadoriaFactory', function ($scope, mercadoriaFactory) {
+  .controller('MercadoriaCtrl', ['$scope', '$routeParams', function ($scope, $routeParams) {
 
-    mercadoriaFactory.get({}, function (mercadoriaFactory) {
-      $scope.mercadorias = mercadoriaFactory.mercadorias;
-    });
-
-    this.awesomeThings = [
+    $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    $scope.referenciaMercadoria = $routeParams.referenciaMercadoria;
+
+    $scope.delete = function () {
+      console.log("Delete()");
+    };
   }]);
