@@ -9,7 +9,7 @@
   </tr>
   <tr ng-repeat="x in mercadorias | filter:searchText | limitTo:20 track by $index  ">
     <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.referencia | referenciaFormatada }}</td>
-    <td ng-if="$even">{{ x.referencia }}</td>
+    <td ng-if="$even">{{ x.referencia  | referenciaFormatada }}</td>
     <td ng-if="$odd" style="background-color:#f1f1f1">{{ x.faixa }}</td>
     <td ng-if="$even">{{ x.faixa }}</td>
   </tr>

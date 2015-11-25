@@ -9,16 +9,11 @@
  */
 angular.module('angularComSassApp')
   .factory('mercadoriaFactory', function ($resource) {
-    // Service logic
-    // ...
-
-    var meaningOfLife = 42;
-
     return $resource('http://localhost\\:8080/backend/rest/mercadorias', {}, {
       query: {
         method: 'GET',
         params: {},
         isArray: false
       }
-    })
+    });
   });
