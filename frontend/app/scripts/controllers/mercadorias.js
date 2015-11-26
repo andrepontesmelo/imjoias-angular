@@ -7,9 +7,16 @@ angular.module('angularComSassApp')
       $scope.mercadorias = mercadoriaFactory.mercadorias;
     });
 
+    $scope.searchText = 201;
+
+
+
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    return [];
+
   }]);

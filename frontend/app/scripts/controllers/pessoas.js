@@ -12,4 +12,6 @@ angular.module('angularComSassApp')
       'AngularJS',
       'Karma'
     ];
+
+    return [];
   }]);

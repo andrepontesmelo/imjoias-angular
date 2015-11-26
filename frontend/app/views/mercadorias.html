@@ -14,9 +14,9 @@
     </tr>
   </thread>
   <tbody>
-    <tr ng-repeat="x in mercadorias | filter:searchText | limitTo:20 track by $index  ">
-      <td><a ng-href="#/mercadoria/{{x.referencia}}"> {{ x.referencia | referenciaFormatada }}</a></td>
-      <td>{{ x.faixa }}</td>
-    </tr>
+  <tr ng-repeat="x in mercadorias | filter: searchText | limitTo:20  ">
+    <td><a ng-href="#/mercadoria/{{x.referencia}}"> {{ x.referencia }}</a></td>
+    <td>{{ x.faixa }}</td>
+  </tr>
   </tbody>
 </table>
