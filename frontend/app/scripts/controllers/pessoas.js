@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('angularComSassApp')
-  .controller('PessoasCtrl', ['$scope', 'myFactory', function ($scope, myFactory) {
+  .controller('PessoasCtrl', ['$scope', 'pessoasFactory', function ($scope, pessoasFactory) {
 
-    myFactory.get({}, function (myFactory) {
-      $scope.pessoas = myFactory.pessoas;
+    pessoasFactory.get({}, function (pessoasFactory) {
+      $scope.pessoas = pessoasFactory.pessoas;
     });
 
     $scope.awesomeThings = [

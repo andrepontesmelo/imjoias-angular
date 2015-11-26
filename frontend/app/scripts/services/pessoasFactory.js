@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('angularComSassApp')
-  .factory('myFactory', function ($resource) {
+  .factory('pessoasFactory', ['$resource', function ($resource) {
 
       return $resource('http://localhost\\:8080/backend/rest/pessoas', {}, {
-          query: {
+          get: {
               method: 'GET',
-              params: {},
+              cache: true,
               isArray: false
           }
       });
-  });
+  }]);

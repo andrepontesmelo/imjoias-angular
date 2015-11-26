@@ -1,17 +1,13 @@
 'use strict';
 
 angular.module('angularComSassApp')
-  .controller('MercadoriasCtrl', ['$scope', 'mercadoriaFactory', function ($scope, mercadoriaFactory) {
+  .controller('MercadoriasCtrl', ['$scope', 'mercadoriasFactory', function ($scope, mercadoriasFactory) {
 
-    mercadoriaFactory.get({}, function (mercadoriaFactory) {
-      $scope.mercadorias = mercadoriaFactory.mercadorias;
+    mercadoriasFactory.get({}, function (mercadoriasFactory) {
+      $scope.mercadorias = mercadoriasFactory.mercadorias;
     });
 
-    $scope.searchText = 201;
-
-
-
-    this.awesomeThings = [
+    $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
