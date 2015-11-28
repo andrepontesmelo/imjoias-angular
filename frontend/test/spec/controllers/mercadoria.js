@@ -16,7 +16,7 @@ describe('Controller: MercadoriaCtrl', function () {
 
     var httpMock = $httpBackend;
     httpMock.expectGET("http://localhost:8080/backend/rest/mercadorias/10190300100").respond(
-      {"mercadoria":{"referencia":"10190300100","faixa":"E"},"componenteCustos":[{"codigo":"30","nome":"OURO COBRADO COMO 0.950  GR-03","quantidade":1.0}]}
+      {"mercadoria":{"referencia":"10190300100","faixa":"A","nome":"Meia AlianÃ§a","teor":750,"peso":1.0,"foraDeLinha":true},"componenteCustos":[{"codigo":"30","nome":"OURO COBRADO COMO 0.950  GR-03","quantidade":1.0}]}
     );
 
     MercadoriaCtrl = $controller('MercadoriaCtrl', {
@@ -32,16 +32,16 @@ describe('Controller: MercadoriaCtrl', function () {
   });
 
   it('Deve carregar a faixa da mercadoria', function () {
-    expect(scope.mercadoria.faixa).toBe("E");
+    expect(scope.mercadoria.faixa).toBe("A");
   });
 
   it('Deve carregar o peso da mercadoria', function () {
-    expect(scope.mercadoria.peso).toBe(1.41);
+    expect(scope.mercadoria.peso).toBe(1.0);
   });
 
-  //it('Deve a lista de componentes de custo', function () {
-  //  expect(scope.componenteCustos.length).toBe(1);
-  //});
+  it('Deve a lista de componentes de custo', function () {
+    expect(scope.componenteCustos.length).toBe(1);
+  });
 
   it('Deve carregar o nome do componente de custo', function () {
     expect(scope.componenteCustos[0].nome).toBe("OURO COBRADO COMO 0.950  GR-03");

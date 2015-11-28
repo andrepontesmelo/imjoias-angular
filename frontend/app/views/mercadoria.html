@@ -7,21 +7,21 @@
     <div class="form-group">
       <label class="control-label col-xs-3" for="inputDescricao">Descrição:</label>
       <div class="col-xs-9">
-        <input id="inputDescricao" class="form-control" placeholder="Descrição" value="Meia Aliança de Ouro C/0.21K de Brilhantes">
+        <input id="inputDescricao" class="form-control" placeholder="Descrição" value="{{mercadoria.nome}}">
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-xs-3" for="inputTeor">Teor:</label>
       <div class="col-xs-9">
-        <input id="inputTeor" class="form-control" placeholder="Peso" value="750">
+        <input id="inputTeor" class="form-control" placeholder="Teor" value="{{mercadoria.teor}}">
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-xs-3" for="inputPeso">Peso:</label>
       <div class="col-xs-9">
-        <input id="inputPeso" class="form-control" placeholder="Email" value="1.41">
+        <input id="inputPeso" class="form-control" placeholder="Peso" value="{{mercadoria.peso}}">
       </div>
     </div>
 
@@ -32,11 +32,10 @@
       </div>
     </div>
 
-
     <div class="form-group">
       <div class="col-xs-offset-3 col-xs-9">
         <label class="checkbox-inline">
-          <input type="checkbox" value="news"> Fora de linha
+          <input type="checkbox" ng-checked="{{mercadoria.foraDeLinha}}"> Fora de linha
         </label>
       </div>
     </div>
@@ -56,30 +55,11 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>31</td>
-        <td>OURO COBRADO COMO 1.000 GR-04</td>
-        <td> 1,41</td>
-        <td>
-          <a ng-click="delete()">
-            <span class="glyphicon glyphicon-remove" style="color:red"></span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>AC</td>
-        <td>ABRILHANTADO ATE 0,09K</td>
-        <td>0,21</td>
-        <td>
-          <a href="#">
-            <span class="glyphicon glyphicon-remove" style="color:red"></span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>21</td>
-        <td>MAO DE OBRA CRAVACAO</td>
-        <td>7,28</td>
+
+      <tr ng-repeat="c in componenteCustos ">
+        <td>{{ c.codigo }}</td>
+        <td>{{ c.nome}}</td>
+        <td>{{ c.quantidade }}</td>
         <td>
           <a href="#">
             <span class="glyphicon glyphicon-remove" style="color:red"></span>
