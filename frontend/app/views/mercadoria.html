@@ -7,35 +7,35 @@
     <div class="form-group">
       <label class="control-label col-xs-3" for="inputDescricao">Descrição:</label>
       <div class="col-xs-9">
-        <input id="inputDescricao" class="form-control" placeholder="Descrição" value="{{mercadoria.nome}}">
+        <input id="inputDescricao" class="form-control" placeholder="Descrição" ng-model="mercadoria.nome">
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-xs-3" for="inputTeor">Teor:</label>
       <div class="col-xs-9">
-        <input id="inputTeor" class="form-control" placeholder="Teor" value="{{mercadoria.teor}}">
+        <input id="inputTeor" class="form-control" placeholder="Teor" ng-model="mercadoria.teor">
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-xs-3" for="inputPeso">Peso:</label>
       <div class="col-xs-9">
-        <input id="inputPeso" class="form-control" placeholder="Peso" value="{{mercadoria.peso}}">
+        <input id="inputPeso" class="form-control" placeholder="Peso" ng-model="mercadoria.peso">
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-xs-3" for="inputFaixa">Faixa:</label>
       <div class="col-xs-9">
-        <input id="inputFaixa" class="form-control" placeholder="Faixa" value="{{mercadoria.faixa}}">
+        <input id="inputFaixa" class="form-control" placeholder="Faixa" ng-model="mercadoria.faixa">
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-xs-offset-3 col-xs-9">
         <label class="checkbox-inline">
-          <input type="checkbox" ng-checked="{{mercadoria.foraDeLinha}}"> Fora de linha
+          <input type="checkbox" ng-model="mercadoria.foraDeLinha"> Fora de linha
         </label>
       </div>
     </div>
@@ -83,7 +83,7 @@
  <div>
     <div class="form-group">
       <div class="col-xs-offset-9 col-xs-9">
-        <input type="submit" class="btn btn-primary" value="Salvar">
+        <input type="submit" class="btn btn-primary" value="Salvar" ng-click="salvar()">
         <input type="reset" class="btn btn-default" value="Cancelar">
       </div>
     </div>

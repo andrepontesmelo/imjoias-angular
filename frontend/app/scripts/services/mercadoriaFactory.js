@@ -7,6 +7,9 @@ angular.module('angularComSassApp')
         method: 'GET',
         cache: true,
         isArray: false
+      },
+      update: {
+        method: 'PUT'
       }
     });
   });

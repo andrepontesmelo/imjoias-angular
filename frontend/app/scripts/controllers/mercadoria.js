@@ -16,5 +16,14 @@ angular.module('angularComSassApp')
 
     $scope.referenciaMercadoria = $routeParams.referenciaMercadoria;
 
+    $scope.salvar = function() {
+
+      var mercadoriaJSON = {};
+      mercadoriaJSON.mercadoria = this.mercadoria;
+      mercadoriaJSON.componenteCustos = this.componenteCustos;
+
+      mercadoriaFactory.update({referencia: $routeParams.referenciaMercadoria}, mercadoriaJSON);
+    };
+
     return [];
   }]);
