@@ -16,7 +16,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr ng-repeat="x in pessoas | filter:searchText | limitTo:20 track by $index  ">
+  <tr ng-repeat="x in pessoas | filter:searchText | limitTo:20 track by x.codigo  ">
     <td>{{ x.codigo }}</td>
     <td>{{ x.nome }}</td>
     <td>{{ x.cidade}}</td>

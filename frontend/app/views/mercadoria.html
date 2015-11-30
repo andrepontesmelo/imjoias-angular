@@ -56,24 +56,26 @@
       </thead>
       <tbody>
 
-      <tr ng-repeat="c in componenteCustos ">
+      <tr ng-repeat="c in componenteCustos track by c.codigo ">
         <td>{{ c.codigo }}</td>
         <td>{{ c.nome}}</td>
         <td>{{ c.quantidade }}</td>
         <td>
-          <a href="#">
+          <div ng-click="remover()" >
             <span class="glyphicon glyphicon-remove" style="color:red"></span>
-          </a>
+          </div>
         </td>
       </tr>
       <tr>
-        <td><select class="form-control"></select></td>
-        <td><input class="form-control" placeholder="" value=""></td>
-        <td><input class="form-control" placeholder="" value=""></td>
+        <td><select class="form-control"
+                    ng-options="option as option.codigo for option in componentes track by option.codigo"
+                    ng-model="novoCC" ng-change="alterouCodigoNovoCC()">
+
+        </select></td>
+        <td><input ng-model="novoComponenteCusto.nome" class="form-control" placeholder="" value=""></td>
+        <td><input ng-model="novoComponenteCusto.quantidade" class="form-control" placeholder="" value=""></td>
         <td>
-          <a href="#">
-            <span class="glyphicon glyphicon-plus"></span>
-          </a>
+            <span ng-click="adicionar()" class="glyphicon glyphicon-plus"></span>
         </td>
       </tr>
       </tbody>
