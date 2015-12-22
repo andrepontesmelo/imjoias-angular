@@ -79,4 +79,11 @@ describe('Controller: MercadoriaCtrl', function () {
     expect(scope.novoComponenteCusto).not.toEqual(componenteAnteriormenteAdicionado);
   });
 
+  it('Deve carregar novo índice de atacado', function() {
+    expect(scope.novosPrecos.novoIndiceAtacado).toBe(1.16);
+  });
+
+  it('Deve carregar novo valor de custo', function() {
+    expect(scope.novosPrecos.novoPrecoCusto).toBe(119.70);
+  });
 });
