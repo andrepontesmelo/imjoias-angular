@@ -1,95 +1,103 @@
- <div class="bs-example">
-    <div class="page-header">
-      <h1>Mercadoria <small>{{ referenciaMercadoria | referenciaFormatada }}</small></h1>
+<div class="bs-example">
+  <div class="page-header">
+    <h1>Mercadoria
+      <small>{{ referenciaMercadoria | referenciaFormatada }}</small>
+    </h1>
+  </div>
+</div>
+<form class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label col-xs-3" for="inputDescricao">Descrição:</label>
+    <div class="col-xs-9">
+      <input id="inputDescricao" class="form-control" placeholder="Descrição" ng-model="mercadoria.nome">
     </div>
   </div>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label class="control-label col-xs-3" for="inputDescricao">Descrição:</label>
-      <div class="col-xs-9">
-        <input id="inputDescricao" class="form-control" placeholder="Descrição" ng-model="mercadoria.nome">
-      </div>
+
+  <div class="form-group">
+    <label class="control-label col-xs-3" for="inputTeor">Teor:</label>
+    <div class="col-xs-9">
+      <input id="inputTeor" class="form-control" placeholder="Teor" ng-model="mercadoria.teor">
     </div>
+  </div>
 
-    <div class="form-group">
-      <label class="control-label col-xs-3" for="inputTeor">Teor:</label>
-      <div class="col-xs-9">
-        <input id="inputTeor" class="form-control" placeholder="Teor" ng-model="mercadoria.teor">
-      </div>
+  <div class="form-group">
+    <label class="control-label col-xs-3" for="inputPeso">Peso:</label>
+    <div class="col-xs-9">
+      <input id="inputPeso" class="form-control" placeholder="Peso" ng-model="mercadoria.peso">
     </div>
+  </div>
 
-    <div class="form-group">
-      <label class="control-label col-xs-3" for="inputPeso">Peso:</label>
-      <div class="col-xs-9">
-        <input id="inputPeso" class="form-control" placeholder="Peso" ng-model="mercadoria.peso">
-      </div>
+  <div class="form-group">
+    <label class="control-label col-xs-3" for="inputFaixa">Faixa:</label>
+    <div class="col-xs-9">
+      <input id="inputFaixa" class="form-control" placeholder="Faixa" ng-model="mercadoria.faixa">
     </div>
+  </div>
 
-    <div class="form-group">
-      <label class="control-label col-xs-3" for="inputFaixa">Faixa:</label>
-      <div class="col-xs-9">
-        <input id="inputFaixa" class="form-control" placeholder="Faixa" ng-model="mercadoria.faixa">
-      </div>
+  <div class="form-group">
+    <div class="col-xs-offset-3 col-xs-9">
+      <label class="checkbox-inline">
+        <input type="checkbox" ng-model="mercadoria.foraDeLinha"> Fora de linha
+      </label>
     </div>
+  </div>
 
-    <div class="form-group">
-      <div class="col-xs-offset-3 col-xs-9">
-        <label class="checkbox-inline">
-          <input type="checkbox" ng-model="mercadoria.foraDeLinha"> Fora de linha
-        </label>
-      </div>
-    </div>
+</form>
 
-  </form>
-
-    <h3>Componentes de custo</h3>
+<h3>Componentes de custo</h3>
 
 <div>
-    <table class="table">
-      <thead>
-      <tr>
-        <th>Código</th>
-        <th>Nome</th>
-        <th>Quantidade</th>
-        <th>Ação</th>
-      </tr>
-      </thead>
-      <tbody>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nome</th>
+      <th>Quantidade</th>
+      <th>Ação</th>
+    </tr>
+    </thead>
+    <tbody>
 
-      <tr ng-repeat="c in componenteCustos track by c.codigo ">
-        <td>{{ c.codigo }}</td>
-        <td>{{ c.nome}}</td>
-        <td>{{ c.quantidade }}</td>
-        <td>
-          <div ng-click="remover()" >
-            <span class="glyphicon glyphicon-remove" style="color:red"></span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td><select class="form-control"
-                    ng-options="option as option.codigo for option in componentes track by option.codigo"
-                    ng-model="novoCC" ng-change="alterouCodigoNovoCC()">
+    <tr ng-repeat="c in componenteCustos track by c.codigo ">
+      <td>{{ c.codigo }}</td>
+      <td>{{ c.nome}}</td>
+      <td>{{ c.quantidade }}</td>
+      <td>
+        <div ng-click="remover()">
+          <span class="glyphicon glyphicon-remove" style="color:red"></span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td><select class="form-control"
+                  ng-options="option as option.codigo for option in componentes track by option.codigo"
+                  ng-model="novoCC" ng-change="alterouCodigoNovoCC()">
 
-        </select></td>
-        <td><input ng-model="novoComponenteCusto.nome" class="form-control" placeholder="" value=""></td>
-        <td><input ng-model="novoComponenteCusto.quantidade" class="form-control" placeholder="" value=""></td>
-        <td>
-            <span ng-click="adicionar()" class="glyphicon glyphicon-plus"></span>
-        </td>
-      </tr>
-      </tbody>
-      </table>
+      </select></td>
+      <td><input ng-model="novoComponenteCusto.nome" class="form-control" placeholder="" value=""></td>
+      <td><input ng-model="novoComponenteCusto.quantidade" class="form-control" placeholder="" value=""></td>
+      <td>
+        <span ng-click="adicionar()" class="glyphicon glyphicon-plus"></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
- <div>
-    <div class="form-group">
-      <div class="col-xs-offset-9 col-xs-9">
-        <input type="submit" class="btn btn-primary" value="Salvar" ng-click="salvar()">
-        <input type="reset" class="btn btn-default" value="Cancelar">
-      </div>
+<div>
+  <div class="form-group">
+    <div class="col-xs-offset-9 col-xs-9">
+      <input type="submit" class="btn btn-primary" value="Salvar" ng-click="salvar()">
+      <input type="reset" class="btn btn-default" value="Cancelar">
     </div>
- </div>
+  </div>
+</div>
 
+<h3> Novos Preços </h3>
+
+<ul>
+  <li>Atacado: {{ novosPrecos.novoIndiceAtacado }}</li>
+  <li>Preço de custo: {{ novosPrecos.novoPrecoCusto | currency:"R$" }}</li>
+</ul>
 
 <br/><br/><br/>

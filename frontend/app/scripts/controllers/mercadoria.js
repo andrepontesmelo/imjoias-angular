@@ -1,15 +1,19 @@
 'use strict';
 
 angular.module('angularComSassApp')
-  .controller('MercadoriaCtrl', ['$scope', '$routeParams', 'mercadoriaFactory', 'componentesDeCustoFactory', function ($scope, $routeParams, mercadoriaFactory, componentesDeCustoFactory) {
+  .controller('MercadoriaCtrl', ['$scope', '$routeParams', 'mercadoriaFactory', 'componentesCustoFactory', 'novosPrecosFactory', function ($scope, $routeParams, mercadoriaFactory, componentesCustoFactory, novosPrecosFactory) {
 
     mercadoriaFactory.get({referencia: $routeParams.referenciaMercadoria}, function (mercadoriaFactory) {
       $scope.mercadoria = mercadoriaFactory.mercadoria;
       $scope.componenteCustos = mercadoriaFactory.componenteCustos;
     });
 
-    componentesDeCustoFactory.get({}, function (componentesDeCustoFactory) {
-      $scope.componentes = componentesDeCustoFactory.componentes;
+    novosPrecosFactory.get({referencia: $routeParams.referenciaMercadoria}, function (novosPrecosFactory) {
+      $scope.novosPrecos = novosPrecosFactory.novosPrecos;
+    });
+
+    componentesCustoFactory.get({}, function (componentesCustoFactory) {
+      $scope.componentes = componentesCustoFactory.componentes;
     });
 
     $scope.referenciaMercadoria = $routeParams.referenciaMercadoria;

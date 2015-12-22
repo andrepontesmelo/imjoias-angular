@@ -20,12 +20,18 @@ describe('Controller: MercadoriaCtrl', function () {
       {"mercadoria":{"referencia":"10190300100","faixa":"A","nome":"Meia AlianÃ§a","teor":750,"peso":1.0,"foraDeLinha":true},"componenteCustos":[{"codigo":"30","nome":"OURO COBRADO COMO 0.950  GR-03","quantidade":1.0}]}
     );
 
+    httpMock.expectGET("http://localhost:8080/backend/rest/mercadorias/10190300100/novos-preços").respond(
+      {"novosPrecos":{"novoIndiceAtacado":1.16,"novoPrecoCusto":119.7}}
+    );
+
     httpMock.expectGET("http://localhost:8080/backend/rest/componentesdecusto").respond(
       {"componentes":[{"codigo":"0A","nome":"OURO COBRADO COMO 0.800  GR-00"},{"codigo":"10","nome":"DOLAR"},
         {"codigo":"19","nome":"CONSERTOS EM GERAL"},{"codigo":"1A","nome":"OURO COBRADO COMO 0.850  GR-01"}]}
     );
 
-    MercadoriaCtrl = $controller('MercadoriaCtrl', {
+
+
+      MercadoriaCtrl = $controller('MercadoriaCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
