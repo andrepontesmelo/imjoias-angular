@@ -17,6 +17,7 @@
 */log/**
 
 # Gradle
+/backend/build
 */build
 */.gradle
 
@@ -26,3 +27,4 @@
 ~                                                                                                                                
 ~                                                                                                                                
 ~          
+/.project
