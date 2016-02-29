@@ -23,6 +23,11 @@ module Example
         requires :to_currency, type: String
       end
 
+      http_basic do |email, password|
+      	ok = email == 'admin' && password == 'admin';
+      	ok
+      end
+
       get :exchange do
         converted = params[:amount] * get_exchange_rate(params[:to_currency])
 
