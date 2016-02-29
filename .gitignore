@@ -11,6 +11,8 @@
 */.idea/tasks.xml
 */*.isw
 */*.iml
+.idea
+.idea/
 
 # Maven
 */target/**
