@@ -1,5 +1,5 @@
 require 'grape'
-require_relative 'lib/example/converter'
+require_relative 'lib/api/api'
 
 use Rack::Session::Cookie
-run Example::Converter
+run ImjoiasGrape::API
