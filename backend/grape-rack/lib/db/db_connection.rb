@@ -1,6 +1,7 @@
 require 'sequel'
 require 'mysql2'
 require 'singleton'
+require 'logger'
 
 module ImjoiasGrape
   module DB
@@ -16,7 +17,8 @@ module ImjoiasGrape
                                user: 'root',
                                password: '',
                                host: '127.0.0.1',
-                               database:  'imjoias')
+                               database:  'imjoias',
+                               loggers: [Logger.new($stdout)])
         end
 
         @db
