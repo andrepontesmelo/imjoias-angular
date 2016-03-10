@@ -1,22 +1,39 @@
 require 'grape'
 require_relative '../db/mercadoria'
+require_relative '../db/componente'
 
 module ImjoiasGrape
   # Mercadoria
   class Mercadoria < Grape::API
-    resource :mercadorias do
-      get do
-        ImjoiasGrape::DB::Mercadoria.new.all
+    resource :mercadoria do
+      namespace ':referencia' do
+        params do
+          requires :referencia, type: String
+        end
+
+        get do
+          mercadoria = DB::Mercadoria.new.get(params[:referencia])
+          mercadoria[:componentes] = DB::Componente.new.get(params[:referencia])
+          mercadoria
+        end
+
+        resource :componentes do
+          get do
+            DB::Componente.new.get(params[:referencia])
+          end
+        end
       end
     end
 
-    resource :mercadoria do
-      params do
-        requires :referencia, type: String
+    resource :mercadorias do
+      get do
+        DB::Mercadoria.new.all
       end
 
-      get do
-        ImjoiasGrape::DB::Mercadoria.new.get(params[:referencia])
+      resource :componentes do
+        get do
+          DB::Componente.new.all
+        end
       end
     end
   end
