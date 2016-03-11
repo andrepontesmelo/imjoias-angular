@@ -4,13 +4,13 @@ require 'singleton'
 require 'logger'
 
 module ImjoiasGrape
-  module DB
-    # MySQL Connections
-    class DBConnection
+  module BD
+    # Conexao MySQL
+    class Conexao
       include Singleton
       @db = nil
 
-      def connection
+      def conexao
         if @db.nil?
           @db = Sequel.connect(adapter: 'mysql2',
                                max_connections: 10,

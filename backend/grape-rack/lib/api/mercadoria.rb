@@ -1,6 +1,6 @@
 require 'grape'
-require_relative '../db/mercadoria'
-require_relative '../db/componente'
+require_relative '../bd/mercadoria'
+require_relative '../bd/componente'
 
 module ImjoiasGrape
   # Mercadoria
@@ -12,14 +12,18 @@ module ImjoiasGrape
         end
 
         get do
-          mercadoria = DB::Mercadoria.new.get(params[:referencia])
-          mercadoria[:componentes] = DB::Componente.new.get(params[:referencia])
-          mercadoria
+          mercadoria = BD::Mercadoria.new(params[:referencia])
+          retorno = mercadoria.obter
+          retorno[:componentes] = BD::Componente.obter(params[:referencia])
+          retorno[:novosPrecos] = mercadoria.novos_precos
+          retorno[:novosPrecosVarejo] = mercadoria.novos_precos_varejo
+
+          retorno
         end
 
         resource :componentes do
           get do
-            DB::Componente.new.get(params[:referencia])
+            BD::Componente.obter(params[:referencia])
           end
         end
       end
@@ -27,12 +31,12 @@ module ImjoiasGrape
 
     resource :mercadorias do
       get do
-        DB::Mercadoria.new.all
+        BD::Mercadoria.todas
       end
 
       resource :componentes do
         get do
-          DB::Componente.new.all
+          BD::Componente.todos
         end
       end
     end

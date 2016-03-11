@@ -1,11 +1,11 @@
 require 'grape'
-require_relative '../db/pessoa'
+require_relative '../bd/pessoa'
 module ImjoiasGrape
   # Rest API Example
   class Pessoa < Grape::API
     resource :pessoas do
       get do
-        DB::Pessoa.new.all
+        BD::Pessoa.todas
       end
     end
   end
