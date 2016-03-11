@@ -60,5 +60,13 @@ module ImjoiasGrape
 
       expect(mercadoria).to include('componentes')
     end
+
+    it 'Deve retornar novos preços de uma mercadoria.' do
+      get "/api/#{app.version}/mercadoria/50901310900"
+      expect(last_response.status).to eq(200)
+      mercadoria = JSON.parse(last_response.body)
+
+      expect(mercadoria).to include('novosPrecos')
+    end
   end
 end
