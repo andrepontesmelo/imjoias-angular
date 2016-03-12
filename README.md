@@ -26,7 +26,7 @@ GET /api/v1/setor/1
 {"codigo":1,"nome":"Varejo","atendimento":true,"empresa":300000,
 "faixas":[{"faixa":"a","setor":1,"valor":3},
           {"faixa":"b","setor":1,"valor":2},
-          {"faixhttp://localhost:9292/api/v1/mercadoria/10232513100/a":"c","setor":1,"valor":1}]}
+          {"faixa":"c","setor":1,"valor":1}]}
 ```
 
 GET /api/v1/mercadorias
