@@ -1,6 +1,7 @@
 require 'grape'
 require_relative '../bd/mercadoria'
 require_relative '../bd/componente'
+require_relative '../bd/foto'
 
 module ImjoiasGrape
   # Mercadoria
@@ -24,6 +25,19 @@ module ImjoiasGrape
         resource :componentes do
           get do
             BD::Componente.obter(params[:referencia])
+          end
+        end
+
+        resource :foto do
+          get do
+            referencia = params[:referencia]
+            content_type 'application/octet-stream'
+            header['Content-Disposition'] = "attachment; \
+                                            filename=#{referencia}.png"
+            env['api.format'] = :binary
+            binario = BD::Foto.obter(referencia)
+            error! :not_found, 404 if binario.nil?
+            binario
           end
         end
       end
