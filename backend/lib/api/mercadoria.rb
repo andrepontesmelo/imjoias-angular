@@ -53,6 +53,12 @@ module ImjoiasGrape
           BD::Componente.todos
         end
       end
+
+      resource :faixas do
+        get do
+          BD::Faixa.todos
+        end
+      end
     end
   end
 end

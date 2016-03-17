@@ -84,8 +84,8 @@ module ImjoiasGrape
       expect(last_response.status).to eq(200)
       componente = JSON.parse(last_response.body)[0]
 
-      expect(componente['faixa']).not_to be_empty
-      expect(componente['setor']).not_to be_empty
+      expect(componente['faixa']).not_to be_nil
+      expect(componente['setor']).not_to be_nil
       expect(componente['valor']).not_to be_nil
     end
   end
