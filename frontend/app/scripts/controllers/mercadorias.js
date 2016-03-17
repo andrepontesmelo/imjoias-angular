@@ -12,12 +12,5 @@ angular.module('angularComSassApp')
             return lowerStr.indexOf(expected.toLowerCase()) === 0;
         }
 
-        $scope.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
-
         return [];
-
     }]);

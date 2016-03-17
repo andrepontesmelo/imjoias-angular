@@ -1,10 +1,8 @@
 'use strict';
 
 describe('Service: componentesCustoFactory', function() {
-    // load the service's module
     beforeEach(module('angularComSassApp'));
 
-    // instantiate service
     var componentesDeCustoFactory;
     beforeEach(inject(function(_componentesCustoFactory_) {
         componentesDeCustoFactory = _componentesCustoFactory_;

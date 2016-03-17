@@ -2,10 +2,8 @@
 
 describe('Filter: referenciaFormatada', function() {
 
-    // load the filter's module
     beforeEach(module('angularComSassApp'));
 
-    // initialize a new instance of the filter before each test
     var referenciaFormatada;
     beforeEach(inject(function($filter) {
         referenciaFormatada = $filter('referenciaFormatada');

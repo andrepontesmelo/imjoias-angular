@@ -1,26 +1,22 @@
 <div class="input-group">
-  <span class="input-group-addon">
+    <span class="input-group-addon">
     <span class="glyphicon glyphicon-search"></span>
-  </span>
-
-  <input type="search" ng-model="searchText" placeholder="Pesquise..." class="form-control" >
+    </span>
+    <input type="search" ng-model="searchText" placeholder="Pesquise..." class="form-control">
 </div>
-
-
 <table class="table">
-  <thead>
-  <tr>
-    <th><b>Código</b>    </th>
-    <th><b>Nome</b></th>
-    <th><b>Cidade</b></th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr ng-repeat="x in pessoas | filter:searchText | limitTo:20 track by x.codigo  ">
-    <td>{{ x.codigo }}</td>
-    <td>{{ x.nome }}</td>
-    <td>{{ x.cidade}}</td>
-  </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <th><b>Código</b> </th>
+            <th><b>Nome</b></th>
+            <th><b>Cidade</b></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="x in pessoas | filter:searchText | limitTo:20 track by x.codigo  ">
+            <td>{{ x.codigo }}</td>
+            <td>{{ x.nome }}</td>
+            <td>{{ x.cidade}}</td>
+        </tr>
+    </tbody>
 </table>
-

@@ -1,14 +1,11 @@
 'use strict';
 
 describe('Controller: MercadoriaCtrl', function() {
-
-    // load the controller's module
     beforeEach(module('angularComSassApp'));
 
     var MercadoriaCtrl,
         scope;
 
-    // Initialize the controller and a mock scope
     beforeEach(inject(function($controller, $rootScope, $httpBackend, $routeParams) {
         scope = $rootScope.$new();
 
