@@ -68,5 +68,25 @@ module ImjoiasGrape
 
       expect(mercadoria).to include('novosPrecos')
     end
+
+    it 'Deve retornar todos os componentes de custo.' do
+      get "/api/#{app.version}/mercadorias/componentes"
+      expect(last_response.status).to eq(200)
+      componente = JSON.parse(last_response.body)[0]
+
+      expect(componente['codigo']).not_to be_empty
+      expect(componente['nome']).not_to be_empty
+      expect(componente['valor']).not_to be_nil
+    end
+
+    it 'Deve retornar todas as faixas.' do
+      get "/api/#{app.version}/mercadorias/faixas"
+      expect(last_response.status).to eq(200)
+      componente = JSON.parse(last_response.body)[0]
+
+      expect(componente['faixa']).not_to be_empty
+      expect(componente['setor']).not_to be_empty
+      expect(componente['valor']).not_to be_nil
+    end
   end
 end
