@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Controller: MainCtrl', function() {
-    beforeEach(module('angularComSassApp'));
+    beforeEach(module('app'));
 
     var MainCtrl,
         scope;

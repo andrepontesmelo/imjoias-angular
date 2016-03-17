@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: mercadoriasFactory', function () {
+describe('Service: mercadoriasFactory', function() {
 
-  // load the service's module
-  beforeEach(module('angularComSassApp'));
+    // load the service's module
+    beforeEach(module('app'));
 
-  // instantiate service
-  var mercadoriasFactory;
-  beforeEach(inject(function (_mercadoriasFactory_) {
-    mercadoriasFactory = _mercadoriasFactory_;
-  }));
+    // instantiate service
+    var mercadoriasFactory;
+    beforeEach(inject(function(_mercadoriasFactory_) {
+        mercadoriasFactory = _mercadoriasFactory_;
+    }));
 
-  it('should do something', function () {
-    expect(!!mercadoriasFactory).toBe(true);
-  });
+    it('should do something', function() {
+        expect(!!mercadoriasFactory).toBe(true);
+    });
 
 });

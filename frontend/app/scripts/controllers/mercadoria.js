@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularComSassApp')
+angular.module('app')
     .controller('MercadoriaCtrl', ['$scope', '$routeParams', 'mercadoriaFactory', 'componentesCustoFactory', 'componenteCustoHash',
         function($scope, $routeParams, mercadoriaFactory, componentesCustoFactory, componenteCustoHash) {
 

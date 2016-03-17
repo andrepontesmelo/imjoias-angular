@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Service: mercadoriaFactory', function() {
-    beforeEach(module('angularComSassApp'));
+    beforeEach(module('app'));
 
     var mercadoriaFactory;
     beforeEach(inject(function(_mercadoriaFactory_) {

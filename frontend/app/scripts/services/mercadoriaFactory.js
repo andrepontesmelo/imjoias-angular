@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularComSassApp')
+angular.module('app')
     .factory('mercadoriaFactory', ['$resource', 'componentesCustoFactory', function($resource, componentesCustoFactory) {
 
         return $resource('http://localhost\\:9292/api/v1/mercadoria/:referencia', { referencia: 'referencia' }, {

@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Service: componenteCustoHash', function() {
-    beforeEach(module('angularComSassApp'));
+    beforeEach(module('app'));
 
     var componenteCustoHash;
     beforeEach(inject(function(_componenteCustoHash_) {

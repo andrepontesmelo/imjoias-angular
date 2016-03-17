@@ -2,7 +2,7 @@
 
 describe('Service: pessoasFactory', function() {
 
-    beforeEach(module('angularComSassApp'));
+    beforeEach(module('app'));
 
     var pessoasFactory;
     beforeEach(inject(function(_pessoasFactory_) {

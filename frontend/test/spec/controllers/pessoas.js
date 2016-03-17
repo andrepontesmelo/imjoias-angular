@@ -2,7 +2,7 @@
 
 describe('Controller: PessoasCtrl', function() {
 
-    beforeEach(module('angularComSassApp'));
+    beforeEach(module('app'));
 
     var AboutCtrl,
         scope;

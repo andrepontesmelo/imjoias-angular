@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularComSassApp')
+angular.module('app')
     .factory('componentesCustoFactory', ['$resource', function($resource) {
         return $resource('http://localhost\\:9292/api/v1/componentes', {}, {
             get: {

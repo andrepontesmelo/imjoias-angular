@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularComSassApp')
+angular.module('app')
     .filter('referenciaFormatada', function() {
         return function(input) {
             if (input.length < 11) {

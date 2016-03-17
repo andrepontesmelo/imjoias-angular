@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularComSassApp')
+angular.module('app')
     .controller('PessoasCtrl', ['$scope', 'pessoasFactory', function($scope, pessoasFactory) {
 
         pessoasFactory.get({}, function(pessoasFactory) {

@@ -1,7 +1,7 @@
 'use strict';
 describe('Controller: MercadoriasCtrl', function() {
 
-    beforeEach(module('angularComSassApp'));
+    beforeEach(module('app'));
 
     var MercadoriasCtrl,
         scope;

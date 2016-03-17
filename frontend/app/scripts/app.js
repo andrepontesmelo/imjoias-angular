@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('angularComSassApp', [
+    .module('app', [
         'ngAnimate',
         'ngCookies',
         'ngResource',

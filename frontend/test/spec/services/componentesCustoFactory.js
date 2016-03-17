@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Service: componentesCustoFactory', function() {
-    beforeEach(module('angularComSassApp'));
+    beforeEach(module('app'));
 
     var componentesDeCustoFactory;
     beforeEach(inject(function(_componentesCustoFactory_) {

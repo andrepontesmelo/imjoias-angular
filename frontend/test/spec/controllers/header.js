@@ -2,7 +2,7 @@
 
 describe('Controller: HeaderCtrl', function() {
 
-    beforeEach(module('angularComSassApp'));
+    beforeEach(module('app'));
 
     var HeaderCtrl,
         scope;

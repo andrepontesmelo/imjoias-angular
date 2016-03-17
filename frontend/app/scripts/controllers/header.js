@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularComSassApp')
+angular.module('app')
     .controller('HeaderCtrl', ['$scope', '$location', function($scope, $location) {
 
         $scope.isActive = function(viewLocation) {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularComSassApp')
+angular.module('app')
     .factory('componenteCustoHash', ['componentesCustoFactory', function(componentesCustoFactory) {
         var hashComponentes = {};
 
