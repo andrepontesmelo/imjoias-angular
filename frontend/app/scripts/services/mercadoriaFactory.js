@@ -1,15 +1,16 @@
 'use strict';
 
 angular.module('angularComSassApp')
-  .factory('mercadoriaFactory', function ($resource) {
-    return $resource('http://localhost\\:8080/backend/rest/mercadorias/:referencia', {referencia: 'referencia'}, {
-      get: {
-        method: 'GET',
-        cache: true,
-        isArray: false
-      },
-      update: {
-        method: 'PUT'
-      }
-    });
-  });
+    .factory('mercadoriaFactory', ['$resource', 'componentesCustoFactory', function($resource, componentesCustoFactory) {
+
+        return $resource('http://localhost\\:9292/api/v1/mercadoria/:referencia', { referencia: 'referencia' }, {
+            get: {
+                method: 'GET',
+                cache: true,
+                isArray: false
+            },
+            update: {
+                method: 'PUT'
+            }
+        });
+    }]);

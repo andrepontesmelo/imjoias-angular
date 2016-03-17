@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('angularComSassApp')
-  .factory('componentesCustoFactory', ['$resource', function ($resource) {
-
-    return $resource('http://localhost\\:8080/backend/rest/componentesdecusto', {}, {
-      get: {
-        method: 'GET',
-        cache: true,
-        isArray: false
-      }
-    });
-  }]);
+    .factory('componentesCustoFactory', ['$resource', function($resource) {
+        return $resource('http://localhost\\:9292/api/v1/componentes', {}, {
+            get: {
+                method: 'GET',
+                cache: true,
+                isArray: true
+            }
+        });
+    }]);

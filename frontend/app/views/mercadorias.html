@@ -14,7 +14,8 @@
     </tr>
   </thread>
   <tbody>
-  <tr ng-repeat="x in mercadorias | filter: searchText | limitTo:20  track by x.referencia  ">
+
+  <tr ng-repeat="x in mercadorias | filter:searchText:startsWith | limitTo:20  track by x.referencia  ">
     <td><a ng-href="#/mercadoria/{{x.referencia}}"> {{ x.referencia }}</a></td>
     <td>{{ x.faixa }}</td>
   </tr>
