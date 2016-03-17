@@ -82,11 +82,11 @@ module ImjoiasGrape
     it 'Deve retornar todas as faixas.' do
       get "/api/#{app.version}/mercadorias/faixas"
       expect(last_response.status).to eq(200)
-      componente = JSON.parse(last_response.body)[0]
+      faixas = JSON.parse(last_response.body)
 
-      expect(componente['faixa']).not_to be_nil
-      expect(componente['setor']).not_to be_nil
-      expect(componente['valor']).not_to be_nil
+      expect(faixas).to include 'A'
+      expect(faixas).to include 'B'
+      expect(faixas).to include 'C'
     end
   end
 end

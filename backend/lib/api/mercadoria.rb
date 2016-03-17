@@ -56,7 +56,7 @@ module ImjoiasGrape
 
       resource :faixas do
         get do
-          BD::Faixa.todos
+          BD::Faixa.todas
         end
       end
     end

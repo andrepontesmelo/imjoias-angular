@@ -5,8 +5,13 @@ module ImjoiasGrape
   module BD
     # Faixa
     class Faixa < Entidade
-      def self.todos
-        bd[:faixa].all
+      def self.todas
+        retorno = []
+        bd.fetch('SELECT distinct faixa FROM faixa') do |faixa|
+          retorno.push(faixa[:faixa].upcase)
+        end
+
+        retorno
       end
 
       def self.obter(setor)
