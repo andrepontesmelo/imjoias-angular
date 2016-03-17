@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('app')
-    .controller('MercadoriaCtrl', ['$scope', '$routeParams', 'mercadoriaFactory', 'componentesCustoFactory', 'componenteCustoHash',
-        function($scope, $routeParams, mercadoriaFactory, componentesCustoFactory, componenteCustoHash) {
+    .controller('MercadoriaCtrl', ['$scope', '$routeParams', 'mercadoriaFactory', 'faixas', 'componentesCustoFactory', 'componenteCustoHash',
+        function($scope, $routeParams, mercadoriaFactory, faixas, componentesCustoFactory, componenteCustoHash) {
 
             mercadoriaFactory.get({ referencia: $routeParams.referenciaMercadoria }, function(mercadoriaFactory) {
                 $scope.mercadoria = mercadoriaFactory;
@@ -16,6 +16,10 @@ angular.module('app')
 
             componentesCustoFactory.get({}, function(componentesCustoFactory) {
                 $scope.componentes = componentesCustoFactory;
+            });
+
+            faixas.get({}, function(faixas) {
+                $scope.faixas = faixas;
             });
 
             $scope.referenciaMercadoria = $routeParams.referenciaMercadoria;

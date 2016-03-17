@@ -47,7 +47,12 @@
         <div class="form-group">
             <label class="control-label col-xs-3" for="inputFaixa">Faixa:</label>
             <div class="col-xs-9">
-                <input id="inputFaixa" class="form-control" placeholder="Faixa" ng-model="mercadoria.faixa">
+                <!--<input id="inputFaixa" class="form-control" placeholder="Faixa" ng-model="mercadoria.faixa">-->
+                <select id="inputFaixa" name="singleSelect" id="singleSelect" ng-model="mercadoria.faixa" class="form-control">
+                    <option value=""></option>
+                    <option ng-repeat="f in faixas" value="{{f}}">Faixa {{f}}
+                    </option>
+                </select>
             </div>
         </div>
         <div class="form-group">
