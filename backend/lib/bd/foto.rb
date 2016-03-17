@@ -11,10 +11,9 @@ module ImjoiasGrape
         mercadoria[:foto].to_s.force_encoding('ISO-8859-1')
       end
 
-      def self.possuiFoto(referencia)
+      def self.possui_foto(referencia)
         bd[:foto].where(mercadoria: referencia).count > 0
       end
-
     end
   end
 end
