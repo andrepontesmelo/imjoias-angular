@@ -2,6 +2,7 @@ require 'grape'
 require_relative 'mercadoria'
 require_relative 'pessoa'
 require_relative 'setor'
+require_relative 'componente'
 
 module ImjoiasGrape
   # Classe de entrada da API
@@ -14,5 +15,7 @@ module ImjoiasGrape
     mount Mercadoria
     mount Pessoa
     mount Setor
+    mount Componente
   end
 end
+
