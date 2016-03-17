@@ -18,7 +18,7 @@ module ImjoiasGrape
           retorno[:componentes] = BD::Componente.obter(params[:referencia])
           retorno[:novosPrecos] = mercadoria.novos_precos
           retorno[:novosPrecosVarejo] = mercadoria.novos_precos_varejo
-
+          retorno[:possuiFoto] = BD::Foto.possuiFoto(params[:referencia])
           retorno
         end
 
