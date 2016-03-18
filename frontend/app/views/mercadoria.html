@@ -22,33 +22,32 @@
     <h3>Dados da mercadoria</h3>
     <div ng-show="mercadoria.possuiFoto" class="row">
         <div class="col-md-2 col-md-offset-5">
-            <img ng-src="{{obterUrlFoto()}}" alt="Foto da {{mercadoria.nome}}" />
+            <img ng-src="{{obterUrlFoto()}}" alt="Foto da {{mercadoria.mercadoria.nome}}" />
         </div>
     </div>
     <form class="form-horizontal">
         <div class="form-group">
             <label class="control-label col-xs-3" for="inputDescricao">Descrição:</label>
             <div class="col-xs-9">
-                <input id="inputDescricao" class="form-control" placeholder="Descrição" ng-model="mercadoria.nome">
+                <input id="inputDescricao" class="form-control" placeholder="Descrição" ng-model="mercadoria.mercadoria.nome">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-xs-3" for="inputTeor">Teor:</label>
             <div class="col-xs-9">
-                <input id="inputTeor" class="form-control" placeholder="Teor" ng-model="mercadoria.teor">
+                <input id="inputTeor" class="form-control" placeholder="Teor" ng-model="entidade.teor">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-xs-3" for="inputPeso">Peso:</label>
             <div class="col-xs-9">
-                <input id="inputPeso" class="form-control" placeholder="Peso" ng-model="mercadoria.peso">
+                <input id="inputPeso" class="form-control" placeholder="Peso" ng-model="entidade.peso">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-xs-3" for="inputFaixa">Faixa:</label>
             <div class="col-xs-9">
-                <!--<input id="inputFaixa" class="form-control" placeholder="Faixa" ng-model="mercadoria.faixa">-->
-                <select id="inputFaixa" name="singleSelect" id="singleSelect" ng-model="mercadoria.faixa" class="form-control">
+                <select id="inputFaixa" name="singleSelect" id="singleSelect" ng-model="entidade.faixa" class="form-control">
                     <option value=""></option>
                     <option ng-repeat="f in faixas" value="{{f}}">Faixa {{f}}
                     </option>
@@ -58,7 +57,7 @@
         <div class="form-group">
             <div class="col-xs-offset-3 col-xs-9">
                 <label class="checkbox-inline">
-                    <input type="checkbox" ng-model="mercadoria.foraDeLinha"> Fora de linha
+                    <input type="checkbox" ng-model="entidade.foraDeLinha"> Fora de linha
                 </label>
             </div>
         </div>
@@ -77,9 +76,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="c in mercadoria.componentes track by c.codigo ">
+                <tr ng-repeat="c in mercadoria.componentes track by c.componentecusto ">
                     <td>{{ c.componentecusto }}</td>
-                    <td>{{ c.nome}}</td>
+                    <td>{{ hashComponentes[c.componentecusto] }}</td>
                     <td>{{ c.quantidade }}</td>
                     <td>
                         <div ng-click="remover()">
@@ -93,7 +92,7 @@
                         </select>
                     </td>
                     <td>
-                        <input ng-model="novoComponenteCusto.nome" class="form-control" placeholder="" value="">
+                        <input ng-model="novoComponenteCustoNome" class="form-control" placeholder="" value="">
                     </td>
                     <td>
                         <input ng-model="novoComponenteCusto.quantidade" class="form-control" placeholder="" value="">
@@ -109,8 +108,8 @@
 <section ng-show="abaAtiva(3)">
     <h3> Novos Preços </h3>
     <ul>
-        <li>Atacado: {{ novosPrecos.novoIndiceAtacado }}</li>
-        <li>Preço de custo: {{ novosPrecos.novoPrecoCusto | currency:"R$" }}</li>
+        <li>Atacado: {{ mercadoria.novosPrecos.novoIndiceAtacado }}</li>
+        <li>Preço de custo: {{ mercadoria.novosPrecos.novoPrecoCusto | currency:"R$" }}</li>
     </ul>
 </section>
 <div>

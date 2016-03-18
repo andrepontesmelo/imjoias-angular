@@ -19,6 +19,11 @@ describe('Controller: MercadoriaCtrl', function() {
 
         httpMock.expectGET("http://localhost:9292/api/v1/mercadoria/10190300100").respond({ "referencia": "10190300100", "nome": "Meia AlianÃ§a", "teor": 750, "peso": 1.0, "faixa": "A", "grupo": 3, "digito": true, "foradelinha": true, "depeso": true, "componentes": [{ "mercadoria": "10190300100", "componentecusto": "10", "quantidade": 1.0 }], "novosPrecos": { "mercadoria": "10190300100", "novoIndiceAtacado": 1.21, "novoPrecoCusto": 125.4 }, "novosPrecosVarejo": { "mercadoria": "10190300100", "novoValorVarejoConsulta": 270.86, "novoValorVarejo": 286.92 }, "possuiFoto": false });
 
+        httpMock.expectGET("http://localhost:9292/api/v1/mercadorias/faixas").respond(
+            ["A", "B", "C", "D", "E", "F", "G", "H", "I", "S"]
+        );
+
+
         MercadoriaCtrl = $controller('MercadoriaCtrl', {
             $scope: scope
         });
@@ -43,7 +48,8 @@ describe('Controller: MercadoriaCtrl', function() {
     });
 
     it('Deve carregar o nome do componente de custo', function() {
-        expect(scope.mercadoria.componentes[0].nome).toBe('DOLAR');
+        var ccusto = scope.mercadoria.componentes[0].componentecusto
+        expect(scope.hashComponentes[ccusto]).toBe('DOLAR');
     });
 
     it('Deve carregar a quantidade do componente de custo', function() {

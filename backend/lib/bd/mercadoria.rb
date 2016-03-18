@@ -15,6 +15,21 @@ module ImjoiasGrape
         bd[:mercadoria].all
       end
 
+      def atualizar(entidades)
+        mercadoria = entidades[:mercadoria]
+        componentes = entidades[:componentes]
+        referencia = mercadoria[:referencia]
+
+        bd.transaction do
+          bd[:mercadoria].where(referencia: referencia).update(mercadoria)
+          bd[:vinculomercadoriacomponentecusto]
+            .where(mercadoria: referencia).delete
+          componentes.map do |key, _value|
+            bd[:vinculomercadoriacomponentecusto].insert(key)
+          end
+        end
+      end
+
       def obter
         bd[:mercadoria][referencia: referencia]
       end

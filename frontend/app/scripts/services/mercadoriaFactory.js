@@ -6,7 +6,7 @@ angular.module('app')
         return $resource('http://localhost\\:9292/api/v1/mercadoria/:referencia', { referencia: 'referencia' }, {
             get: {
                 method: 'GET',
-                cache: true,
+                cache: false,
                 isArray: false
             },
             update: {

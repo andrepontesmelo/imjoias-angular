@@ -23,10 +23,10 @@ module ImjoiasGrape
       expect(last_response.status).to eq(404)
     end
 
-    it 'Deve retornar uma mercadorias pela referência' do
+    it 'Deve retornar uma mercadoria pela referência' do
       get "/api/#{app.version}/mercadoria/10100101127"
       expect(last_response.status).to eq(200)
-      mercadoria = JSON.parse(last_response.body)
+      mercadoria = JSON.parse(last_response.body)['mercadoria']
 
       expect(mercadoria).to include('referencia')
       expect(mercadoria).to include('peso')

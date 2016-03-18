@@ -6,13 +6,17 @@ angular.module('app')
 
             mercadoriaFactory.get({ referencia: $routeParams.referenciaMercadoria }, function(mercadoriaFactory) {
                 $scope.mercadoria = mercadoriaFactory;
-
-                var hashComponentes = componenteCustoHash.obterHash();
-
-                angular.forEach($scope.mercadoria.componentes, function(value, key) {
-                    value.nome = hashComponentes[value.componentecusto];
-                });
+                $scope.entidade = $scope.mercadoria.mercadoria;
+                $scope.hashComponentes = componenteCustoHash.obterHash();;
             });
+
+            $scope.atualizar = function() {
+                mercadoriaFactory.get({ referencia: $routeParams.referenciaMercadoria }, function(mercadoriaFactory) {
+                    $scope.mercadoria = mercadoriaFactory;
+                    $scope.entidade = $scope.mercadoria.mercadoria;
+                    $scope.hashComponentes = componenteCustoHash.obterHash();;
+                });
+            };
 
             componentesCustoFactory.get({}, function(componentesCustoFactory) {
                 $scope.componentes = componentesCustoFactory;
@@ -25,6 +29,7 @@ angular.module('app')
             $scope.referenciaMercadoria = $routeParams.referenciaMercadoria;
 
             $scope.adicionar = function() {
+                this.novoComponenteCusto.mercadoria = $scope.referenciaMercadoria
                 this.mercadoria.componentes.push(this.novoComponenteCusto);
                 this.novoComponenteCusto = [];
             };
@@ -43,12 +48,14 @@ angular.module('app')
             };
 
             $scope.salvar = function() {
-
                 var mercadoriaJSON = {};
                 mercadoriaJSON.mercadoria = this.mercadoria;
                 mercadoriaJSON.componenteCustos = this.componenteCustos;
 
-                mercadoriaFactory.update({ referencia: $routeParams.referenciaMercadoria }, mercadoriaJSON);
+                mercadoriaFactory.update({ referencia: $routeParams.referenciaMercadoria }, mercadoriaJSON).
+                $promise.then(function(b) {
+                    $scope.atualizar();
+                });
             };
 
             $scope.aba = 1;
@@ -61,10 +68,9 @@ angular.module('app')
                 $scope.aba = idx;
             };
 
-
             $scope.alterouCodigoNovoCC = function() {
-                this.novoComponenteCusto.codigo = $scope.novoCC.codigo;
-                this.novoComponenteCusto.nome = $scope.novoCC.nome;
+                this.novoComponenteCusto.componentecusto = $scope.novoCC.codigo;
+                this.novoComponenteCustoNome = $scope.hashComponentes[$scope.novoCC.codigo];
             };
 
             return [];

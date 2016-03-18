@@ -13,13 +13,20 @@ module ImjoiasGrape
         end
 
         get do
+          retorno = {}
           mercadoria = BD::Mercadoria.new(params[:referencia])
-          retorno = mercadoria.obter
+          retorno[:mercadoria] = mercadoria.obter
           retorno[:componentes] = BD::Componente.obter(params[:referencia])
           retorno[:novosPrecos] = mercadoria.novos_precos
           retorno[:novosPrecosVarejo] = mercadoria.novos_precos_varejo
           retorno[:possuiFoto] = BD::Foto.possui_foto(params[:referencia])
           retorno
+        end
+
+        put do
+          mercadoria = BD::Mercadoria.new(params[:referencia])
+          mercadoria.atualizar(params[:mercadoria])
+          {}
         end
 
         resource :componentes do
