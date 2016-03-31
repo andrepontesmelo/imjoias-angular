@@ -27,4 +27,12 @@ describe('Controller: FaixasCtrl', function () {
         scope.atualizarAlteracoes();
         expect(scope.alteracoes[0]).toBe("Exclusão de faixa B");
     });
+
+    it('deve descartar alterações', function() {
+        scope.dados.original.listaFaixas = [ 'A', 'B', 'C', 'D', 'E', 'F', 'Z'];
+        scope.dados.alterando.listaFaixas = [ 'O' ];
+
+        scope.descartarAlteracoes();
+        expect(scope.alteracoes.length).toEqual(0);
+    });
 });

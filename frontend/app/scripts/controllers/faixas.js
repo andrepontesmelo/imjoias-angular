@@ -3,7 +3,7 @@
 angular.module('app')
   .controller('FaixasCtrl', ['$scope', function ($scope) {
     $scope.aba = 1;
-    $scope.alterando = true;
+    $scope.alterando = false;
     $scope.dados = {};
     $scope.dados.original = {};
     $scope.dados.original.listaFaixas = [ 'A', 'B', 'C', 'D', 'E', 'F'];
@@ -11,7 +11,7 @@ angular.module('app')
     $scope.dados.original.marcacoes.varejo = {'A': 1.21, 'B': 2.21, 'C': 3.21, 'D': 4.49, 'E': 5.55, 'F': 1.92};
     $scope.dados.original.marcacoes.atacado  = {'A': 5.21, 'B': 3.21, 'C': 3.31, 'D': 4.19, 'E': 2.52, 'F': 1.42};
     $scope.dados.alterando = angular.copy($scope.dados.original);
-    $scope.alteracoes = ['Primeira alteração'];
+    $scope.alteracoes = [];
 
     $scope.abaAtiva = function(idx) {
         return $scope.aba === idx;
@@ -27,6 +27,8 @@ angular.module('app')
 
     $scope.descartarAlteracoes = function() {
       $scope.alterando = false;
+      $scope.dados.alterando = angular.copy($scope.dados.original);
+      $scope.atualizarAlteracoes();
     };
 
     $scope.removerFaixa = function(faixa) {

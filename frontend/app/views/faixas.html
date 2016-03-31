@@ -77,16 +77,22 @@
 
 <section ng-show="abaAtiva(3)">
 
-  <h1> Alterações <small> locais</small></h1>
-  <li ng-repeat="a in alteracoes">
-    <ul> 
+  <h1> Resumo <small> das alterações locais</small></h1>
+  <ol>
+    <li ng-repeat="a in alteracoes">  
       {{a}}
-    </ul>
-  </li>
+    </li>
+  </ol>
 
   <button ng-hide="alterando" ng-click="iniciarAlteracoes()" class="btn btn-warning">Iniciar Alterações</button>
-  <button ng-show="alterando" ng-click="aplicarAlteracoes()" class="btn btn-danger">Aplicar alterações</button>
-  <button ng-show="alterando" ng-click="descartarAlteracoes()" class="btn btn-default">Descartar alterações</button>
+  <p ng-show="alterando && alteracoes.length === 0"> 
+    Nenhuma alteração ainda.
+  </p>
+
+  <div ng-show="alteracoes.length > 0">
+    <button ng-show="alterando" ng-click="aplicarAlteracoes()" class="btn btn-danger">Aplicar alterações</button>
+    <button ng-show="alterando" ng-click="descartarAlteracoes()" class="btn btn-default">Descartar alterações</button>
+  </div>
 
 </section>
 <div style="margin-bottom: 10px"/>
