@@ -3,7 +3,7 @@
 angular.module('app')
   .controller('FaixasCtrl', ['$scope', function ($scope) {
     $scope.aba = 1;
-    $scope.alterando = false;
+    $scope.alterando = true;
     $scope.dados = {};
     $scope.dados.original = {};
     $scope.dados.original.listaFaixas = [ 'A', 'B', 'C', 'D', 'E', 'F'];
@@ -40,11 +40,21 @@ angular.module('app')
         $scope.atualizarAlteracoes();
     };
 
+    $scope.adicionarFaixa = function(faixa) {
+        $scope.dados.alterando.listaFaixas.push(faixa);
+        $scope.atualizarAlteracoes();
+    };
+
     $scope.atualizarAlteracoes = function() {
         $scope.alteracoes = [];
         var exclusoesFaixas = _.difference($scope.dados.original.listaFaixas, $scope.dados.alterando.listaFaixas);
         exclusoesFaixas.forEach(function(faixa) {
             $scope.alteracoes.push("Exclusão de faixa " + faixa);
+        });  
+
+        var inclusoesFaixas = _.difference($scope.dados.alterando.listaFaixas, $scope.dados.original.listaFaixas);
+        inclusoesFaixas.forEach(function(faixa) {
+            $scope.alteracoes.push("Adição de faixa " + faixa);
         });  
     };
   }]);

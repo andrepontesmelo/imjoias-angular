@@ -18,8 +18,8 @@
  <p>As mercadorias são agrupadas nas seguintes faixas</p>
  <ul class="list-group">
   <li ng-repeat="faixa in dados.alterando.listaFaixas" class="list-group-item">{{ faixa }}
-    <button ng-show="alterando" class='btn btn-danger btn-xs pull-right' type="button" ng-click="removerFaixa(faixa)">
-      <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+    <button ng-show="alterando" class='btn btn-default btn-xs pull-right' type="button" ng-click="removerFaixa(faixa)">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     </button>
   </li>
 </ul>
@@ -28,9 +28,11 @@
   <label for="nova-faixa">Nova Faixa</label>
   <div class="col-lg-6">
     <div class="input-group">
-      <input id="nova-faixa" class="form-control" type='text'/>
+      <input id="nova-faixa" ng-model="novaFaixa" class="form-control" type='text'/>
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Criar</button>
+        <button class="btn btn-default" type="button" ng-click="adicionarFaixa(novaFaixa)">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
       </span>
     </div>
   </div>
