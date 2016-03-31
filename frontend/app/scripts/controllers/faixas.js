@@ -2,8 +2,8 @@
 
 angular.module('app')
   .controller('FaixasCtrl', ['$scope', function ($scope) {
-    $scope.aba = 1;
-    $scope.alterando = true;
+    $scope.aba = 2;
+    $scope.alterando = false;
     $scope.dados = {};
     $scope.dados.original = {};
     $scope.dados.original.listaFaixas = [ 'A', 'B', 'C', 'D', 'E', 'F'];
