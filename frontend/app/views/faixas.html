@@ -1,0 +1,94 @@
+<section>
+  <ul class="nav nav-pills">
+    <li ng-class="{ active:abaAtiva(1) }">
+      <a href ng-click="ativeAba(1)">Faixas</a>
+    </li>
+    <li ng-class="{ active:abaAtiva(2) }">
+      <a href ng-click="ativeAba(2)">Marcações</a>
+    </li>
+    <li ng-class="{ active:abaAtiva(3) }">
+      <a href ng-click="ativeAba(3)">Alterações</a>
+    </li>
+  </ul>
+</section>
+
+<div class="form-group"/>
+<section ng-show="abaAtiva(1)">
+ <h1> Faixas <small> das mercadorias </small></h1>
+ <p>As mercadorias são agrupadas nas seguintes faixas</p>
+ <ul class="list-group">
+  <li ng-repeat="faixa in dados.alterando.listaFaixas" class="list-group-item">{{ faixa }}
+    <button ng-show="alterando" class='btn btn-danger btn-xs pull-right' type="button" ng-click="removerFaixa(faixa)">
+      <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+    </button>
+  </li>
+</ul>
+
+<div ng-show="alterando" class="form-group">
+  <label for="nova-faixa">Nova Faixa</label>
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input id="nova-faixa" class="form-control" type='text'/>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Criar</button>
+      </span>
+    </div>
+  </div>
+</div>
+</section>
+
+<section ng-show="abaAtiva(2)">
+  <h1> Marcações <small> de lucro da empresa </small></h1>
+  <div class="col-md-6">
+    <p>A marcação é o multiplicador aplicado no <mark>preço de custo</mark> para se chegar no <mark>preço de venda</mark>.</p>
+    <p>
+     As mercadorias são agrupadas em faixas de forma a possibilitar diferentes marcações de lucro.
+   </p>
+ </div>
+
+ <div class="col-md-6">
+  <p>Embora a empresa trabalhe com vários setores, existem marcações apenas para <mark>varejo</mark> e <mark>atacado</mark>. As diferentes <mark>tabelas</mark> servem apenas para selecionar a correta cotação do ouro - ou de outra moeda - para aquela modalidade de venda.
+  </p>
+</div>
+
+<div class="row"/>
+
+
+<div ng-repeat="(tabela, valores) in dados.original.marcacoes">
+  <h1> {{tabela | titleCase }} <small> Marcações de lucro de {{tabela}} </small></h1>
+  <div class="panel panel-default">
+    <table class="table">
+      <tr>
+        <th>Faixa</th>
+        <th>Marcação</th>
+      </tr>
+      <tr ng-repeat="(faixaAtual, valorAtual) in valores">
+        <td>{{faixaAtual}}</td>
+        <td><input ng-show="alterando" type='number' step='0.01' ng-value="valorAtual" />
+          <div ng-hide="alterando"> {{valorAtual}}</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+</section>
+
+<section ng-show="abaAtiva(3)">
+
+  <h1> Alterações <small> locais</small></h1>
+  <li ng-repeat="a in alteracoes">
+    <ul> 
+      {{a}}
+    </ul>
+  </li>
+
+  <button ng-hide="alterando" ng-click="iniciarAlteracoes()" class="btn btn-warning">Iniciar Alterações</button>
+  <button ng-show="alterando" ng-click="aplicarAlteracoes()" class="btn btn-danger">Aplicar alterações</button>
+  <button ng-show="alterando" ng-click="descartarAlteracoes()" class="btn btn-default">Descartar alterações</button>
+
+</section>
+<div style="margin-bottom: 10px"/>
+
+

@@ -31,6 +31,21 @@ angular
                 controller: 'MercadoriaCtrl',
                 controllerAs: 'mercadoria'
             })
+            .when('/faixas', {
+                templateUrl: 'views/faixas.html',
+                controller: 'FaixasCtrl',
+                controllerAs: 'faixas'
+            })
+            .when('/fornecedores', {
+                templateUrl: 'views/fornecedores.html',
+                controller: 'FornecedoresCtrl',
+                controllerAs: 'fornecedores'
+            })
+            .when('/precos', {
+                templateUrl: 'views/precos.html',
+                controller: 'PrecosCtrl',
+                controllerAs: 'precos'
+            })
             .otherwise({
                 redirectTo: '/'
             });

@@ -48,7 +48,7 @@ describe('Controller: MercadoriaCtrl', function() {
     });
 
     it('Deve carregar o nome do componente de custo', function() {
-        var ccusto = scope.mercadoria.componentes[0].componentecusto
+        var ccusto = scope.mercadoria.componentes[0].componentecusto;
         expect(scope.hashComponentes[ccusto]).toBe('DOLAR');
     });
 
