@@ -3,3 +3,5 @@ gem 'sequel'
 gem 'rspec'
 gem 'rack-test'
 gem 'mysql2'
+  
+gem "puma", group: :production
