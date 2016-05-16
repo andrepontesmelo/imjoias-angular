@@ -24,10 +24,9 @@ module ImjoiasGrape
     end
 
     it 'Deve permitir geração de tabela' do
-      body = [{data: '2001-01-01 00:00:00', funcionario: 300001, ouro: 140,
-        juros: 2.8}]
+      body = { funcionario: 300_001, ouro: 140, juros: 2.8 }
       post "/api/#{app.version}/geracaotabela/",
-        body.to_json, 'CONTENT_TYPE' => 'application/json'
+           body.to_json, 'CONTENT_TYPE' => 'application/json'
 
       expect(last_response.status).to eq(201)
     end

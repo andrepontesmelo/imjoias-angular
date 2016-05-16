@@ -12,6 +12,11 @@ module ImjoiasGrape
       def self.obtem(data)
         bd[:geracaotabela].where(data: data)
       end
+
+      def self.gera(funcionario, ouro, juros)
+        args = [funcionario, ouro, juros]
+        bd.call_sproc('gerartabela', args: args)
+      end
     end
   end
 end

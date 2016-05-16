@@ -15,6 +15,17 @@ module ImjoiasGrape
       delete ':data' do
         BD::GeracaoTabela.obtem(params[:data]).delete
       end
+
+      desc 'Gera a tabela de precos'
+      params do
+        requires :funcionario, type: Integer
+        requires :ouro, type: Float
+        requires :juros, type: Float
+      end
+      post do
+        BD::GeracaoTabela.gera(params[:funcionario],
+                               params[:ouro], params[:juros])
+      end
     end
   end
 end
