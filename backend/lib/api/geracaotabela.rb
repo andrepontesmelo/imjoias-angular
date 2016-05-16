@@ -7,6 +7,14 @@ module ImjoiasGrape
       get do
         BD::GeracaoTabela.todas
       end
+
+      desc 'Deleta uma geracao de tabela'
+      params do
+        requires :data, type: DateTime
+      end
+      delete ':data' do
+        BD::GeracaoTabela.delete(params[:data])
+      end
     end
   end
 end
