@@ -9,8 +9,8 @@ module ImjoiasGrape
         bd[:geracaotabela].all
       end
 
-      def self.delete(data)
-        bd[:geracaotabela].where(data: data).delete
+      def self.obtem(data)
+        bd[:geracaotabela].where(data: data)
       end
     end
   end

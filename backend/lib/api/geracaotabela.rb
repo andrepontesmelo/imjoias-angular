@@ -13,7 +13,7 @@ module ImjoiasGrape
         requires :data, type: DateTime
       end
       delete ':data' do
-        BD::GeracaoTabela.delete(params[:data])
+        BD::GeracaoTabela.obtem(params[:data]).delete
       end
     end
   end
