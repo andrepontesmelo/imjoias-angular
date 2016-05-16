@@ -17,5 +17,10 @@ module ImjoiasGrape
       expect(geracoes).to include('ouro')
       expect(geracoes).to include('juros')
     end
+
+    it 'Deve permitir exclusão de geração de tabela' do
+      delete "/api/#{app.version}/geracaotabela/20010101000000"
+      expect(last_response.status).to eq(200)
+    end
   end
 end
