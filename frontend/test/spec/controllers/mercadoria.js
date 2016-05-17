@@ -95,4 +95,5 @@ describe('Controller: MercadoriaCtrl', function() {
     it('Deve carregar novo valor de varejo para venda', function() {
         expect(scope.mercadoria.novosPrecosVarejo.novoValorVarejo).toBe(286.92);
     });
+
 });

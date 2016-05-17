@@ -1,13 +1,16 @@
 'use strict';
 
 angular.module('app')
-  .factory('componentesCustoFactory', ['$resource', 'constantes',
+  .factory('faixas', ['$resource', 'constantes',
     function($resource, constantes) {
-      return $resource(constantes.url + 'componentes', {}, {
+      return $resource(constantes.url + 'mercadorias/faixas', {}, {
         get: {
           method: 'GET',
           cache: true,
           isArray: true
+        },
+        update: {
+          method: 'PUT'
         }
       });
     }

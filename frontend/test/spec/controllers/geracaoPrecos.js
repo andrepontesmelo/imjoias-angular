@@ -1,14 +1,15 @@
 'use strict';
 
-describe('Controller: PessoasCtrl', function() {
+describe('Controller: GeracaoPrecosCtrl', function() {
+
   beforeEach(module('app'));
 
-  var AboutCtrl,
+  var GeracaoprecosCtrl,
     scope;
 
   beforeEach(inject(function($controller, $rootScope) {
     scope = $rootScope.$new();
-    AboutCtrl = $controller('PessoasCtrl', {
+    GeracaoprecosCtrl = $controller('GeracaoPrecosCtrl', {
       $scope: scope
     });
   }));

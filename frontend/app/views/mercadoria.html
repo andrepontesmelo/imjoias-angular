@@ -1,120 +1,125 @@
 <section>
-    <div class="page-header">
-        <h1>Mercadoria
+  <div class="page-header">
+    <h1>Mercadoria
       <small>{{ referenciaMercadoria | referenciaFormatada }}</small>
     </h1>
-    </div>
+  </div>
 </section>
 <section>
-    <ul class="nav nav-pills">
-        <li ng-class="{ active:abaAtiva(1) }">
-            <a href ng-click="ativeAba(1)">Mercadoria</a>
-        </li>
-        <li ng-class="{ active:abaAtiva(2) }">
-            <a href ng-click="ativeAba(2)">Componentes</a>
-        </li>
-        <li ng-class="{ active:abaAtiva(3) }">
-            <a href ng-click="ativeAba(3)">Preços</a>
-        </li>
-    </ul>
+  <ul class="nav nav-pills">
+    <li ng-class="{ active:abaAtiva(1) }">
+      <a href ng-click="ativeAba(1)">Mercadoria</a>
+    </li>
+    <li ng-class="{ active:abaAtiva(2) }">
+      <a href ng-click="ativeAba(2)">Componentes</a>
+    </li>
+    <li ng-class="{ active:abaAtiva(3) }">
+      <a href ng-click="ativeAba(3)">Preços</a>
+    </li>
+  </ul>
 </section>
 <section ng-show="abaAtiva(1)">
-    <h3>Dados da mercadoria</h3>
-    <div ng-show="mercadoria.possuiFoto" class="row">
-        <div class="col-md-2 col-md-offset-5">
-            <img ng-src="{{obterUrlFoto()}}" alt="Foto da {{mercadoria.mercadoria.nome}}" />
-        </div>
+  <h3>Dados da mercadoria</h3>
+  <div ng-show="mercadoria.possuiFoto" class="row">
+    <div class="col-md-2 col-md-offset-5">
+      <img ng-src="{{obterUrlFoto()}}" alt="Foto da {{mercadoria.mercadoria.nome}}"/>
     </div>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label class="control-label col-xs-3" for="inputDescricao">Descrição:</label>
-            <div class="col-xs-9">
-                <input id="inputDescricao" class="form-control" placeholder="Descrição" ng-model="mercadoria.mercadoria.nome">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-xs-3" for="inputTeor">Teor:</label>
-            <div class="col-xs-9">
-                <input id="inputTeor" class="form-control" placeholder="Teor" ng-model="entidade.teor">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-xs-3" for="inputPeso">Peso:</label>
-            <div class="col-xs-9">
-                <input id="inputPeso" class="form-control" placeholder="Peso" ng-model="entidade.peso">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-xs-3" for="inputFaixa">Faixa:</label>
-            <div class="col-xs-9">
-                <select id="inputFaixa" name="singleSelect" id="singleSelect" ng-model="entidade.faixa" class="form-control">
-                    <option value=""></option>
-                    <option ng-repeat="f in faixas" value="{{f}}">Faixa {{f}}
-                    </option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-xs-offset-3 col-xs-9">
-                <label class="checkbox-inline">
-                    <input type="checkbox" ng-model="entidade.foraDeLinha"> Fora de linha
-                </label>
-            </div>
-        </div>
-    </form>
+  </div>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="control-label col-xs-3" for="inputDescricao">Descrição:</label>
+      <div class="col-xs-9">
+        <input id="inputDescricao" class="form-control" placeholder="Descrição" ng-model="mercadoria.mercadoria.nome">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-xs-3" for="inputTeor">Teor:</label>
+      <div class="col-xs-9">
+        <input id="inputTeor" class="form-control" placeholder="Teor" ng-model="entidade.teor">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-xs-3" for="inputPeso">Peso:</label>
+      <div class="col-xs-9">
+        <input id="inputPeso" class="form-control" placeholder="Peso" ng-model="entidade.peso">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-xs-3" for="inputFaixa">Faixa:</label>
+      <div class="col-xs-9">
+        <select id="inputFaixa" name="singleSelect" id="singleSelect" ng-model="entidade.faixa" class="form-control">
+          <option value=""></option>
+          <option ng-repeat="f in faixas" value="{{f}}">Faixa
+            {{f}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-offset-3 col-xs-9">
+        <label class="checkbox-inline">
+          <input type="checkbox" ng-model="entidade.foraDeLinha">
+          Fora de linha
+        </label>
+      </div>
+    </div>
+  </form>
 </section>
 <section ng-show="abaAtiva(2)">
-    <h3>Componentes de custo</h3>
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>Quantidade</th>
-                    <th>Ação</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="c in mercadoria.componentes track by c.componentecusto ">
-                    <td>{{ c.componentecusto }}</td>
-                    <td>{{ hashComponentes[c.componentecusto] }}</td>
-                    <td>{{ c.quantidade }}</td>
-                    <td>
-                        <div ng-click="remover()">
-                            <span class="glyphicon glyphicon-remove" style="color:red"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <select class="form-control" ng-options="option as option.codigo for option in componentes track by option.codigo" ng-model="novoCC" ng-change="alterouCodigoNovoCC()">
-                        </select>
-                    </td>
-                    <td>
-                        <input ng-model="novoComponenteCustoNome" class="form-control" placeholder="" value="">
-                    </td>
-                    <td>
-                        <input ng-model="novoComponenteCusto.quantidade" class="form-control" placeholder="" value="">
-                    </td>
-                    <td>
-                        <span ng-click="adicionar()" class="glyphicon glyphicon-plus"></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <h3>Componentes de custo</h3>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nome</th>
+          <th>Quantidade</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="c in mercadoria.componentes track by c.componentecusto ">
+          <td>{{ c.componentecusto }}</td>
+          <td>{{ hashComponentes[c.componentecusto] }}</td>
+          <td>{{ c.quantidade }}</td>
+          <td>
+            <div ng-click="remover()">
+              <span class="glyphicon glyphicon-remove" style="color:red"></span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select class="form-control" ng-options="option as option.codigo for option in componentes track by option.codigo" ng-model="novoCC" ng-change="alterouCodigoNovoCC()"></select>
+          </td>
+          <td>
+            <input ng-model="novoComponenteCustoNome" class="form-control" placeholder="" value="">
+          </td>
+          <td>
+            <input ng-model="novoComponenteCusto.quantidade" class="form-control" placeholder="" value="">
+          </td>
+          <td>
+            <span ng-click="adicionar()" class="glyphicon glyphicon-plus"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 <section ng-show="abaAtiva(3)">
-    <h3> Novos Preços </h3>
-    <ul>
-        <li>Atacado: {{ mercadoria.novosPrecos.novoIndiceAtacado }}</li>
-        <li>Preço de custo: {{ mercadoria.novosPrecos.novoPrecoCusto | currency:"R$" }}</li>
-    </ul>
+  <h3>
+    Novos Preços
+  </h3>
+  <ul>
+    <li>Atacado:
+      {{ mercadoria.novosPrecos.novoIndiceAtacado }}</li>
+    <li>Preço de custo:
+      {{ mercadoria.novosPrecos.novoPrecoCusto | currency:"R$" }}</li>
+  </ul>
 </section>
 <div>
-    <div class="col-xs-offset-9 col-xs-9 form-group">
-        <input type="submit" class="btn btn-primary" value="Salvar" ng-click="salvar()">
-        <input type="reset" class="btn btn-default" value="Cancelar">
-    </div>
+  <div class="col-xs-offset-9 col-xs-9 form-group">
+    <input type="submit" class="btn btn-primary" value="Salvar" ng-click="salvar()">
+    <input type="reset" class="btn btn-default" value="Cancelar">
+  </div>
 </div>

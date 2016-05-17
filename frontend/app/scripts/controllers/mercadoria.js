@@ -1,78 +1,88 @@
 'use strict';
 
 angular.module('app')
-    .controller('MercadoriaCtrl', ['$scope', '$routeParams', 'mercadoriaFactory', 'faixas', 'componentesCustoFactory', 'componenteCustoHash',
-        function($scope, $routeParams, mercadoriaFactory, faixas, componentesCustoFactory, componenteCustoHash) {
+  .controller('MercadoriaCtrl', ['$scope', '$routeParams', 'mercadoriaFactory',
+    'faixas', 'componentesCustoFactory', 'componenteCustoHash', 'constantes',
 
-            mercadoriaFactory.get({ referencia: $routeParams.referenciaMercadoria }, function(mercadoriaFactory) {
-                $scope.mercadoria = mercadoriaFactory;
-                $scope.entidade = $scope.mercadoria.mercadoria;
-                $scope.hashComponentes = componenteCustoHash.obterHash();;
-            });
+    function($scope, $routeParams, mercadoriaFactory,
+      faixas, componentesCustoFactory, componenteCustoHash, constantes) {
 
-            $scope.atualizar = function() {
-                mercadoriaFactory.get({ referencia: $routeParams.referenciaMercadoria }, function(mercadoriaFactory) {
-                    $scope.mercadoria = mercadoriaFactory;
-                    $scope.entidade = $scope.mercadoria.mercadoria;
-                    $scope.hashComponentes = componenteCustoHash.obterHash();;
-                });
-            };
+      mercadoriaFactory.get({
+        referencia: $routeParams.referenciaMercadoria
+      }, function(mercadoriaFactory) {
+        $scope.mercadoria = mercadoriaFactory;
+        $scope.entidade = $scope.mercadoria.mercadoria;
+        $scope.hashComponentes = componenteCustoHash.obterHash();;
+      });
 
-            componentesCustoFactory.get({}, function(componentesCustoFactory) {
-                $scope.componentes = componentesCustoFactory;
-            });
+      $scope.atualizar = function() {
+        mercadoriaFactory.get({
+          referencia: $routeParams.referenciaMercadoria
+        }, function(mercadoriaFactory) {
+          $scope.mercadoria = mercadoriaFactory;
+          $scope.entidade = $scope.mercadoria.mercadoria;
+          $scope.hashComponentes = componenteCustoHash.obterHash();;
+        });
+      };
 
-            faixas.get({}, function(faixas) {
-                $scope.faixas = faixas;
-            });
+      componentesCustoFactory.get({}, function(componentesCustoFactory) {
+        $scope.componentes = componentesCustoFactory;
+      });
 
-            $scope.referenciaMercadoria = $routeParams.referenciaMercadoria;
+      faixas.get({}, function(faixas) {
+        $scope.faixas = faixas;
+      });
 
-            $scope.adicionar = function() {
-                this.novoComponenteCusto.mercadoria = $scope.referenciaMercadoria
-                this.mercadoria.componentes.push(this.novoComponenteCusto);
-                this.novoComponenteCusto = [];
-            };
+      $scope.referenciaMercadoria = $routeParams.referenciaMercadoria;
 
-            $scope.remover = function(index) {
-                this.mercadoria.componentes.splice(index, 1);
-            };
+      $scope.adicionar = function() {
+        this.novoComponenteCusto.mercadoria = $scope.referenciaMercadoria
+        this.mercadoria.componentes.push(this.novoComponenteCusto);
+        this.novoComponenteCusto = [];
+      };
 
-            $scope.novoComponenteCusto = {};
+      $scope.remover = function(index) {
+        this.mercadoria.componentes.splice(index, 1);
+      };
 
-            $scope.obterUrlFoto = function() {
-                if (this.mercadoria.possuiFoto)
-                    return 'http://localhost:9292/api/v1/mercadoria/' + $scope.referenciaMercadoria + '/foto';
-                else
-                    return '';
-            };
+      $scope.novoComponenteCusto = {};
 
-            $scope.salvar = function() {
-                var mercadoriaJSON = {};
-                mercadoriaJSON.mercadoria = this.mercadoria;
-                mercadoriaJSON.componenteCustos = this.componenteCustos;
+      $scope.obterUrlFoto = function() {
+        if (this.mercadoria.possuiFoto)
+          return constantes.url + 'mercadoria/' + $scope.referenciaMercadoria + '/foto';
+        else
+          return '';
+      };
 
-                mercadoriaFactory.update({ referencia: $routeParams.referenciaMercadoria }, mercadoriaJSON).
-                $promise.then(function(b) {
-                    $scope.atualizar();
-                });
-            };
+      $scope.salvar = function() {
+        var mercadoriaJSON = {};
+        mercadoriaJSON.mercadoria = this.mercadoria;
+        mercadoriaJSON.componenteCustos = this.componenteCustos;
 
-            $scope.aba = 1;
+        mercadoriaFactory.update({
+          referencia: $routeParams.referenciaMercadoria
+        }, mercadoriaJSON).
 
-            $scope.abaAtiva = function(idx) {
-                return $scope.aba === idx;
-            };
+        $promise.then(function(b) {
+          $scope.atualizar();
+        });
+      };
 
-            $scope.ativeAba = function(idx) {
-                $scope.aba = idx;
-            };
+      $scope.aba = 1;
 
-            $scope.alterouCodigoNovoCC = function() {
-                this.novoComponenteCusto.componentecusto = $scope.novoCC.codigo;
-                this.novoComponenteCustoNome = $scope.hashComponentes[$scope.novoCC.codigo];
-            };
+      $scope.abaAtiva = function(idx) {
+        return $scope.aba === idx;
+      };
 
-            return [];
-        }
-    ]);
+      $scope.ativeAba = function(idx) {
+        $scope.aba = idx;
+      };
+
+      $scope.alterouCodigoNovoCC = function() {
+        this.novoComponenteCusto.componentecusto = $scope.novoCC.codigo;
+        this.novoComponenteCustoNome = $scope.hashComponentes[$scope.novoCC.codigo];
+      };
+
+      return [];
+    }
+  ]);

@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('app')
-  .factory('componentesCustoFactory', ['$resource', 'constantes',
+  .factory('geracaoPrecosFactory', ['$resource', 'constantes',
     function($resource, constantes) {
-      return $resource(constantes.url + 'componentes', {}, {
+      return $resource(constantes.url + 'geracaoprecos', {}, {
         get: {
           method: 'GET',
-          cache: true,
+          cache: false,
           isArray: true
         }
       });

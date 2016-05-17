@@ -1,23 +1,29 @@
 'use strict';
 
 angular.module('app')
-    .filter('referenciaFormatada', function() {
-        return function(input) {
-            if (input.length < 11) {
-                return input;
-            } else {
-                var resultado;
+  .filter('referenciaFormatada', function() {
+    return function(entrada) {
 
-                resultado = input.substring(0, 3) + '.' +
-                    input.substring(3, 6) + '.' +
-                    input.substring(6, 8) + '.' +
-                    input.substring(8, 11);
+      var TAMANHO_MINIMO_REFERENCIA = 11;
 
-                if (input.length === 12) {
-                    resultado += '-' + input.substring(11, 12);
-                }
+      if (entrada.length < TAMANHO_MINIMO_REFERENCIA) {
+        return entrada;
+      }
 
-                return resultado;
-            }
-        };
-    });
+      var entradaFormatada;
+
+      entradaFormatada = entrada.substring(0, 3) + '.' +
+        entrada.substring(3, 6) + '.' +
+        entrada.substring(6, 8) + '.' +
+        entrada.substring(8, 11);
+
+      var entradaPossuiDigito = entrada.length === 12;
+
+      if (entradaPossuiDigito) {
+        var digito = entrada.substring(11, 12);
+        entradaFormatada += '-' + digito;
+      }
+
+      return entradaFormatada;
+    };
+  });
