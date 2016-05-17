@@ -1,8 +1,8 @@
 <ul class="nav nav-pills">
-  <li ng-class="{ active:abaAtiva(1) }">
+  <li ng-class="{ active:verificaAbaAtiva(1) }">
     <a href ng-click="ativeAba(1)">Faixas</a>
   </li>
-  <li ng-class="{ active:abaAtiva(2) }">
+  <li ng-class="{ active:verificaAbaAtiva(2) }">
     <a href ng-click="ativeAba(2)">Marcações</a>
   </li>
 </ul>
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <section ng-show="abaAtiva(1)">
+  <section ng-show="verificaAbaAtiva(1)">
     <div class="col-md-7 form-group">
       <h1>
         Faixas
@@ -66,7 +66,7 @@
     </div>
   </section>
 
-  <section ng-show="abaAtiva(2)">
+  <section ng-show="verificaAbaAtiva(2)">
     <div class="row">
       <div class="col-md-12">
         <h1>

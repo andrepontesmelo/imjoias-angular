@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('app')
-  .controller('FaixasCtrl', ['$scope', function($scope) {
-    $scope.aba = 2;
+  .controller('FaixasCtrl', ['$scope', 'abas', function($scope, abas) {
+    abas.inicializa($scope);
+
+    $scope.abaAtiva = 2;
+
     $scope.alterando = false;
     $scope.dados = {};
     $scope.dados.original = {};
@@ -27,14 +30,6 @@ angular.module('app')
 
     $scope.dados.alterando = angular.copy($scope.dados.original);
     $scope.alteracoes = [];
-
-    $scope.abaAtiva = function(idx) {
-      return $scope.aba === idx;
-    };
-
-    $scope.ativeAba = function(idx) {
-      $scope.aba = idx;
-    };
 
     $scope.iniciarAlteracoes = function() {
       $scope.alterando = true;

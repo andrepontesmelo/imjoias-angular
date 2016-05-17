@@ -2,10 +2,12 @@
 
 angular.module('app')
   .controller('MercadoriaCtrl', ['$scope', '$routeParams', 'mercadoriaFactory',
-    'faixas', 'componentesCustoFactory', 'componenteCustoHash', 'constantes',
+    'faixas', 'componentesCustoFactory', 'componenteCustoHash', 'constantes', 'abas',
 
     function($scope, $routeParams, mercadoriaFactory,
-      faixas, componentesCustoFactory, componenteCustoHash, constantes) {
+      faixas, componentesCustoFactory, componenteCustoHash, constantes, abas) {
+
+      abas.inicializa($scope);
 
       mercadoriaFactory.get({
         referencia: $routeParams.referenciaMercadoria
@@ -66,16 +68,6 @@ angular.module('app')
         $promise.then(function(b) {
           $scope.atualizar();
         });
-      };
-
-      $scope.aba = 1;
-
-      $scope.abaAtiva = function(idx) {
-        return $scope.aba === idx;
-      };
-
-      $scope.ativeAba = function(idx) {
-        $scope.aba = idx;
       };
 
       $scope.alterouCodigoNovoCC = function() {
