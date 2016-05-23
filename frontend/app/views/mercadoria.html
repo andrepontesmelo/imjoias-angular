@@ -68,12 +68,12 @@
 <section ng-show="verificaAbaAtiva(2)">
   <h3>Componentes de custo</h3>
   <div>
-    <table class="table">
+    <table class="table table-striped table-bordered">
       <thead>
         <tr>
           <th>Código</th>
           <th>Nome</th>
-          <th>Quantidade</th>
+          <th>QTD</th>
           <th>Ação</th>
         </tr>
       </thead>
@@ -81,10 +81,10 @@
         <tr ng-repeat="c in mercadoria.componentes track by c.componentecusto ">
           <td>{{ c.componentecusto }}</td>
           <td>{{ hashComponentes[c.componentecusto] }}</td>
-          <td>{{ c.quantidade }}</td>
+          <td class="col-md-1">{{ c.quantidade }}</td>
           <td>
             <div ng-click="remover()">
-              <span class="glyphicon glyphicon-remove" style="color:red"></span>
+              <span class="glyphicon glyphicon-remove vert-align" style="color:red;"></span>
             </div>
           </td>
         </tr>
@@ -99,7 +99,7 @@
             <input ng-model="novoComponenteCusto.quantidade" class="form-control" placeholder="" value="">
           </td>
           <td>
-            <span ng-click="adicionar()" class="glyphicon glyphicon-plus"></span>
+            <span ng-click="adicionar()" class="glyphicon glyphicon-plus vert-align"></span>
           </td>
         </tr>
       </tbody>
