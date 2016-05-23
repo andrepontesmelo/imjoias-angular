@@ -1,3 +1,47 @@
+
+
+<table class="table">
+  <thread>
+    <tr>
+      <th>Data</th>
+      <th>Funcionário</th>
+      <th>Ouro</th>
+      <th>Juros</th>
+      <th>Ação</th>
+    </tr>
+  </thread>
+  <tbody>
+    <tr ng-repeat="x in geracaoPrecos">
+      <td>{{ x.data }}</td>
+      <td>{{ x.funcionario }}</td>
+      <td>{{ x.ouro }}</td>
+      <td>{{ x.juros }}</td>
+      <td>
+        <div ng-click="remover()">
+          <span class="glyphicon glyphicon-remove" style="color:red"></span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input ng-model="novaGeracao.Data" class="form-control" placeholder="" value="">
+      </td>
+      <td/>
+      <td>
+        <input ng-model="novaGeracao.Ouro" class="form-control" placeholder="" value="">
+      </td>
+      <td>
+        <input ng-model="novaGeracao.Juros" class="form-control" placeholder="" value="">
+      </td>
+
+      <td>
+        <span ng-click="adicionar()" class="glyphicon glyphicon-plus"></span>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
 <div class="jumbotron">
   <h1>Preços e Índices</h1>
   <p>Cálculo de todos os índices, através dos componentes de custo. E atualização dos preços.</p>
