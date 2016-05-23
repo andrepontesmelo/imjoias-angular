@@ -58,9 +58,10 @@ module.exports = function(config) {
       "PhantomJS"
     ],
 
-    // Which plugins to enable
+    // Which plugins to enable'
     plugins: [
       "karma-phantomjs-launcher",
+      "karma-chrome-launcher",
       "karma-jasmine"
     ],
 
