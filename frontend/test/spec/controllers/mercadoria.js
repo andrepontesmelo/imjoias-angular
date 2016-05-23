@@ -28,15 +28,17 @@ describe('Controller: MercadoriaCtrl', function() {
     );
 
     httpMock.expectGET("http://localhost:9292/api/v1/mercadoria/10190300100").respond({
-      "referencia": "10190300100",
-      "nome": "Meia AlianÃ§a",
-      "teor": 750,
-      "peso": 1.0,
-      "faixa": "A",
-      "grupo": 3,
-      "digito": true,
-      "foradelinha": true,
-      "depeso": true,
+      "mercadoria": {
+        "referencia": "10190300100",
+        "nome": "Meia Alianca",
+        "teor": 750,
+        "peso": 1.0,
+        "faixa": "A",
+        "grupo": 3,
+        "digito": true,
+        "foradelinha": true,
+        "depeso": true
+      },
       "componentes": [{
         "mercadoria": "10190300100",
         "componentecusto": "10",
@@ -67,6 +69,10 @@ describe('Controller: MercadoriaCtrl', function() {
     httpMock.flush();
   }));
 
+  it('Deve carregar o nome da mercadoria', function() {
+    expect(scope.mercadoria.nome).toBe("Meia Alianca");
+  });
+
   it('Deve carregar a faixa da mercadoria', function() {
     expect(scope.mercadoria.faixa).toBe("A");
   });
@@ -76,25 +82,25 @@ describe('Controller: MercadoriaCtrl', function() {
   });
 
   it('Deve carregar a lista de componentes de custo', function() {
-    expect(scope.mercadoria.componentes.length).toBe(1);
+    expect(scope.componentes.length).toBe(1);
   });
 
   it('Deve carregar o código do componente de custo', function() {
-    expect(scope.mercadoria.componentes[0].componentecusto).toBe('10');
+    expect(scope.componentes[0].componentecusto).toBe('10');
   });
 
   it('Deve carregar o nome do componente de custo', function() {
-    var ccusto = scope.mercadoria.componentes[0].componentecusto;
+    var ccusto = scope.componentes[0].componentecusto;
     expect(scope.hashComponentes[ccusto]).toBe('DOLAR');
   });
 
   it('Deve carregar a quantidade do componente de custo', function() {
-    expect(scope.mercadoria.componentes[0].quantidade).toBe(1);
+    expect(scope.componentes[0].quantidade).toBe(1);
   });
 
   it('Deve permitir exclusão de componente de custo', function() {
-    scope.remover(0);
-    expect(scope.mercadoria.componentes.length).toBe(0);
+    scope.removerComponenteIndice(0);
+    expect(scope.componentes.length).toBe(0);
   });
 
   it('Deve permitir adição de componente de custo', function() {
@@ -103,8 +109,8 @@ describe('Controller: MercadoriaCtrl', function() {
     scope.novoComponenteCusto.quantidade = 5;
 
     scope.adicionar();
-    expect(scope.mercadoria.componentes.length).toBe(2);
-    expect(scope.mercadoria.componentes[1].quantidade).toBe(5);
+    expect(scope.componentes.length).toBe(2);
+    expect(scope.componentes[1].quantidade).toBe(5);
   });
 
   it('Deve inicializar novo componente de custo após inserção', function() {
@@ -117,18 +123,65 @@ describe('Controller: MercadoriaCtrl', function() {
   });
 
   it('Deve carregar novo índice de atacado', function() {
-    expect(scope.mercadoria.novosPrecos.novoIndiceAtacado).toBe(1.21);
+    expect(scope.novosPrecos.novoIndiceAtacado).toBe(1.21);
   });
 
   it('Deve carregar novo valor de custo', function() {
-    expect(scope.mercadoria.novosPrecos.novoPrecoCusto).toBe(125.4);
+    expect(scope.novosPrecos.novoPrecoCusto).toBe(125.4);
   });
 
   it('Deve carregar novo valor de varejo para consulta', function() {
-    expect(scope.mercadoria.novosPrecosVarejo.novoValorVarejoConsulta).toBe(270.86);
+    expect(scope.novosPrecosVarejo.novoValorVarejoConsulta).toBe(270.86);
   });
 
   it('Deve carregar novo valor de varejo para venda', function() {
-    expect(scope.mercadoria.novosPrecosVarejo.novoValorVarejo).toBe(286.92);
+    expect(scope.novosPrecosVarejo.novoValorVarejo).toBe(286.92);
+  });
+
+  it('Deve salvar nome da mercadoria', function() {
+    scope.mercadoria.nome = 'novo nome';
+    expect(scope.obterPutJSON().mercadoria.nome).toBe('novo nome');
+  });
+
+  it('Deve salvar teor da mercadoria', function() {
+    scope.mercadoria.teor = 125;
+    expect(scope.obterPutJSON().mercadoria.teor).toBe(125);
+  });
+
+  it('Deve salvar peso da mercadoria', function() {
+    scope.mercadoria.peso = 25.2;
+    expect(scope.obterPutJSON().mercadoria.peso).toBe(25.2);
+  });
+
+  it('Deve salvar faixa da mercadoria', function() {
+    scope.mercadoria.faixa = 'B';
+    expect(scope.obterPutJSON().mercadoria.faixa).toBe('B');
+  });
+
+  it('Deve trocar fora de linha da mercadoria', function() {
+    var novoForaDeLinha = !scope.mercadoria.foradelinha;
+
+    scope.mercadoria.foradelinha = novoForaDeLinha;
+    expect(scope.obterPutJSON().mercadoria.foradelinha).toBe(novoForaDeLinha);
+  });
+
+  it('Deve salvar exclusão de todos os componentes de custo', function() {
+    scope.removerComponenteIndice(0);
+    expect(scope.obterPutJSON().componentes.length).toBe(0);
+  });
+
+  it('Deve gerar JSON para inclusão componente de custo', function() {
+    scope.componentes = {};
+    scope.novoComponenteCustoCodigo.codigo = '10';
+    scope.alterouCodigoNovoComponenteCusto();
+    scope.novoComponenteCusto.quantidade = 50;
+
+    var componentesJSONEsperado = {
+      "mercadoria": "10000101035",
+      "componentecusto": "10",
+      "quantidade": 50
+    };
+
+    expect(scope.obterPutJSON().componentes).toBe(componentesJSONEsperado);
   });
 });

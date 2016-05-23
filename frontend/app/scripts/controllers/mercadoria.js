@@ -1,28 +1,37 @@
 'use strict';
 
 angular.module('app')
-  .controller('MercadoriaCtrl', ['$scope', '$routeParams', 'mercadoriaFactory',
-    'faixas', 'componentesCustoFactory', 'componenteCustoHash', 'constantes', 'abas',
+  .controller('MercadoriaCtrl', ['$scope', '$routeParams', '$filter', 'mercadoriaFactory',
+    'faixas', 'componentesCustoFactory', 'componenteCustoHash', 'constantes',
+    'abas',
 
-    function($scope, $routeParams, mercadoriaFactory,
-      faixas, componentesCustoFactory, componenteCustoHash, constantes, abas) {
+    function($scope, $routeParams, $filter, mercadoriaFactory,
+      faixas, componentesCustoFactory, componenteCustoHash, constantes,
+      abas) {
 
       abas.inicializa($scope);
+
+      $scope.novoComponenteCustoCodigo = {};
 
       mercadoriaFactory.get({
         referencia: $routeParams.referenciaMercadoria
       }, function(mercadoriaFactory) {
-        $scope.mercadoria = mercadoriaFactory;
-        $scope.entidade = $scope.mercadoria.mercadoria;
+        $scope.mercadoria = mercadoriaFactory.mercadoria;
+        $scope.componentes = mercadoriaFactory.componentes;
+        $scope.novosPrecos = mercadoriaFactory.novosPrecos;
+        $scope.novosPrecosVarejo = mercadoriaFactory.novosPrecosVarejo;
+
+        $scope.referenciaFormatadaDigito =
+          $filter('referenciaFormatada')($scope.mercadoria.referencia);
+
         $scope.hashComponentes = componenteCustoHash.obterHash();;
       });
 
-      $scope.atualizar = function() {
+      $scope.recarregar = function() {
         mercadoriaFactory.get({
           referencia: $routeParams.referenciaMercadoria
         }, function(mercadoriaFactory) {
           $scope.mercadoria = mercadoriaFactory;
-          $scope.entidade = $scope.mercadoria.mercadoria;
           $scope.hashComponentes = componenteCustoHash.obterHash();;
         });
       };
@@ -39,40 +48,48 @@ angular.module('app')
 
       $scope.adicionar = function() {
         this.novoComponenteCusto.mercadoria = $scope.referenciaMercadoria
-        this.mercadoria.componentes.push(this.novoComponenteCusto);
+        this.componentes.push(this.novoComponenteCusto);
         this.novoComponenteCusto = [];
       };
 
-      $scope.remover = function(index) {
-        this.mercadoria.componentes.splice(index, 1);
+      $scope.removerComponenteIndice = function(index) {
+        this.componentes.splice(index, 1);
       };
 
       $scope.novoComponenteCusto = {};
 
       $scope.obterUrlFoto = function() {
-        if (this.mercadoria.possuiFoto)
+        if (this.mercadoria.possuiFoto) {
           return constantes.url + 'mercadoria/' + $scope.referenciaMercadoria + '/foto';
-        else
-          return '';
+      }
+
+        return '';
       };
 
-      $scope.salvar = function() {
-        var mercadoriaJSON = {};
-        mercadoriaJSON.mercadoria = this.mercadoria;
-        mercadoriaJSON.componenteCustos = this.componenteCustos;
+      $scope.obterPutJSON = function() {
+        var putJSON = {};
+        putJSON.mercadoria = this.mercadoria;
+        putJSON.componentes = this.componentes;
+
+        return putJSON;
+      };
+
+      $scope.put = function() {
 
         mercadoriaFactory.update({
-          referencia: $routeParams.referenciaMercadoria
-        }, mercadoriaJSON).
+            referencia: $routeParams.referenciaMercadoria
+          }, $scope.obterPutJSON()),
 
-        $promise.then(function(b) {
-          $scope.atualizar();
-        });
+          $promise.then(function(b) {
+            $scope.recarregar();
+          });
       };
 
-      $scope.alterouCodigoNovoCC = function() {
-        this.novoComponenteCusto.componentecusto = $scope.novoCC.codigo;
-        this.novoComponenteCustoNome = $scope.hashComponentes[$scope.novoCC.codigo];
+      $scope.alterouCodigoNovoComponenteCusto = function() {
+        var novoCodigo = $scope.novoComponenteCustoCodigo.codigo;
+
+        this.novoComponenteCusto.componentecusto = novoCodigo;
+        this.novoComponenteCusto.nome = $scope.hashComponentes[novoCodigo];
       };
 
       return [];

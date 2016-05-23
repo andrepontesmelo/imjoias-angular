@@ -23,11 +23,17 @@ module ImjoiasGrape
           retorno
         end
 
+        desc 'Salva mercadoria e componentes de custo'
+        params do
+          requires :mercadoria, type: Hash
+          requires :componentes, type: Hash
+        end
         put do
           mercadoria = BD::Mercadoria.new(params[:referencia])
           mercadoria.atualizar(params[:mercadoria])
           {}
         end
+
 
         resource :componentes do
           get do
