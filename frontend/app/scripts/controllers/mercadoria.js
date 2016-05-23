@@ -11,7 +11,12 @@ angular.module('app')
 
       abas.inicializa($scope);
 
-      $scope.novoComponenteCustoCodigo = {};
+      $scope.alterar = function() {
+        $scope.novoComponenteCustoCodigo = {};
+        $scope.componentes = [];
+      };
+
+      $scope.alterar();
 
       mercadoriaFactory.get({
         referencia: $routeParams.referenciaMercadoria
@@ -37,7 +42,7 @@ angular.module('app')
       };
 
       componentesCustoFactory.get({}, function(componentesCustoFactory) {
-        $scope.componentes = componentesCustoFactory;
+        $scope.todosComponentes = componentesCustoFactory;
       });
 
       faixas.get({}, function(faixas) {
@@ -46,30 +51,41 @@ angular.module('app')
 
       $scope.referenciaMercadoria = $routeParams.referenciaMercadoria;
 
-      $scope.adicionar = function() {
-        this.novoComponenteCusto.mercadoria = $scope.referenciaMercadoria
-        this.componentes.push(this.novoComponenteCusto);
-        this.novoComponenteCusto = [];
+      $scope.adicionarComponente = function() {
+        $scope.novoComponenteCusto.mercadoria = $scope.referenciaMercadoria
+        $scope.componentes.push($scope.novoComponenteCusto);
+        $scope.novoComponenteCusto = [];
       };
 
       $scope.removerComponenteIndice = function(index) {
-        this.componentes.splice(index, 1);
+        $scope.componentes.splice(index, 1);
       };
 
       $scope.novoComponenteCusto = {};
 
       $scope.obterUrlFoto = function() {
-        if (this.mercadoria.possuiFoto) {
+        if ($scope.mercadoria.possuiFoto) {
           return constantes.url + 'mercadoria/' + $scope.referenciaMercadoria + '/foto';
-      }
+        }
 
         return '';
       };
 
       $scope.obterPutJSON = function() {
         var putJSON = {};
-        putJSON.mercadoria = this.mercadoria;
-        putJSON.componentes = this.componentes;
+
+        var listaComponentes = [];
+
+        $scope.componentes.forEach(function(c) {
+          var componente = {};
+          componente["componentecusto"] = c.componentecusto
+          componente["quantidade"] = c.quantidade;
+
+          listaComponentes.push(componente);
+        });
+
+        putJSON.mercadoria = $scope.mercadoria
+        putJSON.componentes = listaComponentes;
 
         return putJSON;
       };
@@ -88,8 +104,8 @@ angular.module('app')
       $scope.alterouCodigoNovoComponenteCusto = function() {
         var novoCodigo = $scope.novoComponenteCustoCodigo.codigo;
 
-        this.novoComponenteCusto.componentecusto = novoCodigo;
-        this.novoComponenteCusto.nome = $scope.hashComponentes[novoCodigo];
+        $scope.novoComponenteCusto.componentecusto = novoCodigo;
+        $scope.novoComponenteCusto.nome = $scope.hashComponentes[novoCodigo];
       };
 
       return [];

@@ -5,43 +5,44 @@ module ImjoiasGrape
   module BD
     # Mercadoria
     class Mercadoria < Entidade
-      attr_accessor :referencia
-
-      def initialize(referencia)
-        @referencia = referencia
-      end
-
       def self.todas
         bd[:mercadoria].all
       end
 
-      def atualizar(entidades)
-        mercadoria = entidades[:mercadoria]
-        componentes = entidades[:componentes]
-        referencia = mercadoria[:referencia]
+      def atualizar(mercadoria, componentes)
+        referencia = entidadeSequel[:referencia]
 
         bd.transaction do
           bd[:mercadoria].where(referencia: referencia).update(mercadoria)
+
           bd[:vinculomercadoriacomponentecusto]
             .where(mercadoria: referencia).delete
-          componentes.map do |key, _value|
-            bd[:vinculomercadoriacomponentecusto].insert(key)
+
+          componentes.each do |componente|
+            bd[:vinculomercadoriacomponentecusto].insert(
+              mercadoria: referencia,
+              componentecusto: componente.componentecusto,
+              quantidade: componente.quantidade
+            )
           end
         end
       end
 
-      def obter
-        bd[:mercadoria][referencia: referencia]
+      def self.obter(referencia)
+        retorno = Mercadoria.new
+        retorno.entidadeSequel = bd[:mercadoria][referencia: referencia]
+
+        retorno
       end
 
       def novos_precos
         bd.call_sproc 'lerParametrosGeracaoPrecos'
-        bd[:novosPrecos][mercadoria: referencia]
+        bd[:novosPrecos][mercadoria: entidadeSequel[:referencia]]
       end
 
       def novos_precos_varejo
         bd.call_sproc 'lerParametrosGeracaoPrecos'
-        bd[:novosPrecosVarejo][mercadoria: referencia]
+        bd[:novosPrecosVarejo][mercadoria: entidadeSequel[:referencia]]
       end
     end
   end

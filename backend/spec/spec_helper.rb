@@ -9,4 +9,8 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
+
+  def string_aleatoria(tamanho)
+    (0...tamanho).map { ('a'..'z').to_a[rand(26)] }.join
+  end
 end

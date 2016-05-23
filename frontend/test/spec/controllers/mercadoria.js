@@ -61,7 +61,6 @@ describe('Controller: MercadoriaCtrl', function() {
       ["A", "B", "C", "D", "E", "F", "G", "H", "I", "S"]
     );
 
-
     MercadoriaCtrl = $controller('MercadoriaCtrl', {
       $scope: scope
     });
@@ -108,7 +107,7 @@ describe('Controller: MercadoriaCtrl', function() {
     scope.novoComponenteCusto.nome = "nome";
     scope.novoComponenteCusto.quantidade = 5;
 
-    scope.adicionar();
+    scope.adicionarComponente();
     expect(scope.componentes.length).toBe(2);
     expect(scope.componentes[1].quantidade).toBe(5);
   });
@@ -117,7 +116,7 @@ describe('Controller: MercadoriaCtrl', function() {
     scope.novoComponenteCusto.nome = "primeiro";
     var componenteAnteriormenteAdicionado = scope.novoComponenteCusto;
 
-    scope.adicionar();
+    scope.adicionarComponente();
 
     expect(scope.novoComponenteCusto).not.toEqual(componenteAnteriormenteAdicionado);
   });
@@ -167,21 +166,23 @@ describe('Controller: MercadoriaCtrl', function() {
 
   it('Deve salvar exclusão de todos os componentes de custo', function() {
     scope.removerComponenteIndice(0);
-    expect(scope.obterPutJSON().componentes.length).toBe(0);
+    expect(Object.keys(scope.obterPutJSON().componentes).length).toBe(0);
   });
 
   it('Deve gerar JSON para inclusão componente de custo', function() {
-    scope.componentes = {};
+    scope.alterar();
     scope.novoComponenteCustoCodigo.codigo = '10';
     scope.alterouCodigoNovoComponenteCusto();
-    scope.novoComponenteCusto.quantidade = 50;
+    scope.novoComponenteCusto.quantidade = '50';
+    scope.adicionarComponente();
 
-    var componentesJSONEsperado = {
-      "mercadoria": "10000101035",
+    var componentesJSONEsperado = JSON.stringify([{
       "componentecusto": "10",
-      "quantidade": 50
-    };
+      "quantidade": "50"
+    }]);
 
-    expect(scope.obterPutJSON().componentes).toBe(componentesJSONEsperado);
+    var jsonGerado = JSON.stringify(scope.obterPutJSON().componentes);
+
+    expect(componentesJSONEsperado).toBe(jsonGerado);
   });
 });

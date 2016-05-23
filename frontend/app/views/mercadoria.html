@@ -90,7 +90,7 @@
         </tr>
         <tr>
           <td>
-            <select class="form-control" ng-options="option as option.codigo for option in componentes track by option.codigo" ng-model="novoComponenteCustoCodigo" ng-change="alterouCodigoNovoComponenteCusto()"></select>
+            <select class="form-control" ng-options="option as option.codigo for option in todosComponentes track by option.codigo" ng-model="novoComponenteCustoCodigo" ng-change="alterouCodigoNovoComponenteCusto()"></select>
           </td>
           <td>
             <input ng-model="novoComponenteCusto.nome" class="form-control" placeholder="" value="">
@@ -99,7 +99,7 @@
             <input ng-model="novoComponenteCusto.quantidade" class="form-control" placeholder="" value="">
           </td>
           <td>
-            <span ng-click="adicionar()" class="glyphicon glyphicon-plus vert-align"></span>
+            <span ng-click="adicionarComponente()" class="glyphicon glyphicon-plus vert-align"></span>
           </td>
         </tr>
       </tbody>

@@ -14,8 +14,8 @@ module ImjoiasGrape
 
         get do
           retorno = {}
-          mercadoria = BD::Mercadoria.new(params[:referencia])
-          retorno[:mercadoria] = mercadoria.obter
+          mercadoria = BD::Mercadoria.obter(params[:referencia])
+          retorno[:mercadoria] = mercadoria.entidadeSequel
           retorno[:componentes] = BD::Componente.obter(params[:referencia])
           retorno[:novosPrecos] = mercadoria.novos_precos
           retorno[:novosPrecosVarejo] = mercadoria.novos_precos_varejo
@@ -26,14 +26,13 @@ module ImjoiasGrape
         desc 'Salva mercadoria e componentes de custo'
         params do
           requires :mercadoria, type: Hash
-          requires :componentes, type: Hash
+          requires :componentes, type: Array
         end
         put do
-          mercadoria = BD::Mercadoria.new(params[:referencia])
-          mercadoria.atualizar(params[:mercadoria])
+          mercadoria = BD::Mercadoria.obter(params[:referencia])
+          mercadoria.atualizar(params[:mercadoria], params[:componentes])
           {}
         end
-
 
         resource :componentes do
           get do
@@ -46,7 +45,7 @@ module ImjoiasGrape
             referencia = params[:referencia]
             content_type 'application/octet-stream'
             header['Content-Disposition'] = "attachment; \
-                                            filename=#{referencia}.png"
+                    filename=#{referencia}.png"
             env['api.format'] = :binary
             binario = BD::Foto.obter(referencia)
             error! :not_found, 404 if binario.nil?

@@ -2,6 +2,8 @@ module ImjoiasGrape
   module BD
     # Base para entidades do banco de dados.
     class Entidade
+      attr_accessor :entidadeSequel
+
       def self.bd
         Conexao.instance.conexao
       end
