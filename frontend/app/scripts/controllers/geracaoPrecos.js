@@ -5,7 +5,7 @@ angular.module('app')
     function($scope, $routeParams, geracaoPrecosFactory) {
 
       geracaoPrecosFactory.get({}, function(geracaoPrecosFactory) {
-        $scope.geracaoPrecos  = geracaoPrecosFactory;
+        $scope.geracaoPrecos = geracaoPrecosFactory;
       });
 
       return [];

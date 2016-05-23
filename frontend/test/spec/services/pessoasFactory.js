@@ -2,7 +2,7 @@
 
 describe('Service: pessoasFactory', function() {
   beforeEach(module('app'));
-  
+
   var pessoasFactory;
   beforeEach(inject(function(_pessoasFactory_) {
     pessoasFactory = _pessoasFactory_;
