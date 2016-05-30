@@ -15,7 +15,7 @@ module ImjoiasGrape
           @db = Sequel.connect(adapter: 'mysql2',
           max_connections: 10,
           user: 'root',
-          password: '',
+          password: 'mircvinhad',
           host: '127.0.0.1',
           database:  'imjoias',
           loggers: [Logger.new($stdout)])

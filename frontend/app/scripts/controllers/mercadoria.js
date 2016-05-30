@@ -26,10 +26,11 @@ angular.module('app')
         $scope.novosPrecos = mercadoriaFactory.novosPrecos;
         $scope.novosPrecosVarejo = mercadoriaFactory.novosPrecosVarejo;
 
-        $scope.referenciaFormatadaDigito =
-          $filter('referenciaFormatada')($scope.mercadoria.referencia);
+        $scope.referenciaFormatadaComDigito =
+          $filter('referenciaFormatada')($scope.mercadoria.referencia +
+            $scope.mercadoria.digito);
 
-        $scope.hashComponentes = componenteCustoHash.obterHash();;
+        $scope.hashComponentes = componenteCustoHash.obterHash();
       });
 
       $scope.recarregar = function() {
@@ -37,7 +38,7 @@ angular.module('app')
           referencia: $routeParams.referenciaMercadoria
         }, function(mercadoriaFactory) {
           $scope.mercadoria = mercadoriaFactory;
-          $scope.hashComponentes = componenteCustoHash.obterHash();;
+          $scope.hashComponentes = componenteCustoHash.obterHash();
         });
       };
 
@@ -52,7 +53,7 @@ angular.module('app')
       $scope.referenciaMercadoria = $routeParams.referenciaMercadoria;
 
       $scope.adicionarComponente = function() {
-        $scope.novoComponenteCusto.mercadoria = $scope.referenciaMercadoria
+        $scope.novoComponenteCusto.mercadoria = $scope.referenciaMercadoria;
         $scope.componentes.push($scope.novoComponenteCusto);
         $scope.novoComponenteCusto = [];
       };
@@ -78,13 +79,13 @@ angular.module('app')
 
         $scope.componentes.forEach(function(c) {
           var componente = {};
-          componente["componentecusto"] = c.componentecusto
-          componente["quantidade"] = c.quantidade;
+          componente.componentecusto = c.componentecusto;
+          componente.quantidade = c.quantidade;
 
           listaComponentes.push(componente);
         });
 
-        putJSON.mercadoria = $scope.mercadoria
+        putJSON.mercadoria = $scope.mercadoria;
         putJSON.componentes = listaComponentes;
 
         return putJSON;
@@ -96,7 +97,7 @@ angular.module('app')
             referencia: $routeParams.referenciaMercadoria
           }, $scope.obterPutJSON()),
 
-          $promise.then(function(b) {
+          $promise.then(function() {
             $scope.recarregar();
           });
       };

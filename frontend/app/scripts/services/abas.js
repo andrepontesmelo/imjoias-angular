@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').factory('abas', function($sce) {
+angular.module('app').factory('abas', function() {
   function inicializa($scope) {
     $scope.abaAtiva = 1;
 

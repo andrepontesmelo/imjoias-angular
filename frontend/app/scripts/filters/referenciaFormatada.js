@@ -2,6 +2,7 @@
 
 angular.module('app')
   .filter('referenciaFormatada', function() {
+
     return function(entrada) {
 
       var TAMANHO_MINIMO_REFERENCIA = 11;

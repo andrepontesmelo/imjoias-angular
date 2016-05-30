@@ -35,7 +35,7 @@ describe('Controller: MercadoriaCtrl', function() {
         "peso": 1.0,
         "faixa": "A",
         "grupo": 3,
-        "digito": true,
+        "digito": 0,
         "foradelinha": true,
         "depeso": true
       },
@@ -170,7 +170,7 @@ describe('Controller: MercadoriaCtrl', function() {
   });
 
   it('Deve mostrar o dígito verificador da mercadoria no título ', function() {
-    expect(scope.referenciaFormatadaComDigito).toBe('101.903.00.100-1');
+    expect(scope.referenciaFormatadaComDigito).toBe('101.903.00.100-0');
   });
 
   it('Deve gerar JSON para inclusão componente de custo', function() {

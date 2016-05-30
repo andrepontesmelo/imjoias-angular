@@ -4,7 +4,7 @@
   </span>
   <input type="search" ng-model="searchText" placeholder="Pesquise..." class="form-control">
 </div>
-<table class="table">
+<table class="table" id="tabela">
   <thread>
     <tr>
       <th>Referência</th>
@@ -15,7 +15,7 @@
     <tr ng-repeat="x in mercadorias | filter:searchText:comecaCom | limitTo:20  track by x.referencia  ">
       <td>
         <a ng-href="#/mercadoria/{{x.referencia}}">
-          {{ x.referencia }}</a>
+          {{ x.referencia + x.digito| referenciaFormatada }}</a>
       </td>
       <td>{{ x.faixa }}</td>
     </tr>
