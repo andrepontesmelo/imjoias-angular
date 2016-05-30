@@ -13,12 +13,14 @@ module ImjoiasGrape
       def conexao
         if @db.nil?
           @db = Sequel.connect(adapter: 'mysql2',
-                               max_connections: 10,
-                               user: 'root',
-                               password: 'mircvinhad',
-                               host: '127.0.0.1',
-                               database:  'imjoias',
-                               loggers: [Logger.new($stdout)])
+          max_connections: 10,
+          user: 'root',
+          password: '',
+          host: '127.0.0.1',
+          database:  'imjoias',
+          loggers: [Logger.new($stdout)])
+
+          @db.convert_tinyint_to_bool = false
         end
 
         @db

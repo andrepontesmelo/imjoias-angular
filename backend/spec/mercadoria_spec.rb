@@ -151,7 +151,7 @@ module ImjoiasGrape
     end
 
     it 'Deve poder trocar foradelinha de uma mercadoria' do
-      foradelinha = false
+      foradelinha = 0
 
       put "/api/#{app.version}/mercadoria/10000101035", {'mercadoria':{'referencia':'10000101035','nome': 'Alianca', 'teor':250, 'peso':250,'faixa':'H','grupo':'','digito':'true','foradelinha':foradelinha,'depeso':'false'},'componentes':[{'componentecusto':'32','quantidade':20}]}
 

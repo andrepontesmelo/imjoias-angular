@@ -40,7 +40,7 @@ module ImjoiasGrape
       expect(last_response.status).to eq(200)
       setor = JSON.parse(last_response.body)[0]
 
-      expect(setor['atendimento']).to eq(true)
+      expect(setor['atendimento']).to eq(1)
     end
   end
 end
