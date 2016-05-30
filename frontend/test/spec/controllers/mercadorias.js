@@ -66,4 +66,8 @@ describe('Controller: MercadoriasCtrl', function() {
   it('Deve detectar strings que não iniciam da mesma forma', function() {
     expect(scope.comecaCom('Andre', 'b')).toBe(false);
   });
+
+  it('Deve mostrar o dígito verificador da mercadoria no título ', function() {
+    expect(scope.referenciaFormatadaComDigito).toBe('101.903.00.100-1');
+  });
 });

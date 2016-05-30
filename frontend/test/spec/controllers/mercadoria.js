@@ -169,6 +169,10 @@ describe('Controller: MercadoriaCtrl', function() {
     expect(Object.keys(scope.obterPutJSON().componentes).length).toBe(0);
   });
 
+  it('Deve mostrar o dígito verificador da mercadoria no título ', function() {
+    expect(scope.referenciaFormatadaComDigito).toBe('101.903.00.100-1');
+  });
+
   it('Deve gerar JSON para inclusão componente de custo', function() {
     scope.alterar();
     scope.novoComponenteCustoCodigo.codigo = '10';
