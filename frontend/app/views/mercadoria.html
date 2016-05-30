@@ -107,24 +107,27 @@
   </div>
 </section>
 <section ng-show="verificaAbaAtiva(3)">
-  <p> É mostrado abaixo os valores vigentes de atacado e varejo (em vermelho).
-    Na coluna geração são mostrados os novos valores que entrarão em vigor assim
-    que a geração de preços for executada.
+  <p>
+    É mostrado abaixo os valores vigentes de atacado e varejo (em vermelho). Na coluna geração são mostrados os novos valores que entrarão em vigor assim que a geração de preços for executada.
   </p>
-  <div class="col-xs-5">
-    <h3>
+  <h2>
+    Tabelas do sistema
+  </h2>
+
+  <div class="col-xs-4">
+    <h4>
       Geração
-    </h3>
-    <p> R$ 111,55 (1.32)
+    </h4>
+    <p>
+      R$ 111,55 (1.32)
     </p>
     <p class='cor-varejo'>
       R$ 125,55
     </p>
-    <p>Custo:
-      {{ novosPrecos.novoPrecoCusto | currency:"R$" }}</p>
   </div>
-  <div class="col-xs-5">
-    <h3>Vigente</h3>
+
+  <div class="col-xs-4">
+    <h4>Vigente</h4>
     <p>
       R$ 154,32 (1.32)
     </p>
@@ -132,6 +135,75 @@
       R$ 125,55
     </p>
   </div>
+  <div class="col-xs-4">
+    <h4>Custo</h4>
+    <p>
+      {{ novosPrecos.novoPrecoCusto | currency:"R$" }}
+    </p>
+    <p class='cor-varejo'>
+      R$ 125,55
+    </p>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <h2>
+    Tabelas Personalizadas
+  </h2>
+  <h3>
+    Consignado
+  </h3>
+  <div class="col-xs-4">
+    <h4>
+      Geração
+    </h4>
+    <p>
+      R$ 111,55 (1.32)
+    </p>
+  </div>
+  <div class="col-xs-4">
+    <h4>Vigente</h4>
+    <p>
+      R$ 154,32 (1.32)
+    </p>
+  </div>
+  <div class="clearfix"></div>
+  <h3>
+    Alto-Atacado
+  </h3>
+  <div class="col-xs-4">
+    <h4>
+      Geração
+    </h4>
+    <p>
+      R$ 111,55 (1.32)
+    </p>
+  </div>
+  <div class="col-xs-4">
+    <h4>Vigente</h4>
+    <p>
+      R$ 154,32 (1.32)
+    </p>
+  </div>
+  <div class="clearfix"></div>
+  <h3>
+    Representante
+  </h3>
+  <div class="col-xs-4">
+    <h4>
+      Geração
+    </h4>
+    <p>
+      R$ 111,55 (1.32)
+    </p>
+  </div>
+  <div class="col-xs-4">
+    <h4>Vigente</h4>
+    <p>
+      R$ 154,32 (1.32)
+    </p>
+  </div>
+
 </section>
 <div>
   <div class="col-xs-offset-9 col-xs-9 form-group">
