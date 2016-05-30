@@ -107,15 +107,31 @@
   </div>
 </section>
 <section ng-show="verificaAbaAtiva(3)">
-  Novos Preços
-</h3>
-<h3>
-  <ul>
-    <li>Atacado:
-      {{ novosPrecos.novoIndiceAtacado }}</li>
-    <li>Preço de custo:
-      {{ novosPrecos.novoPrecoCusto | currency:"R$" }}</li>
-  </ul>
+  <p> É mostrado abaixo os valores vigentes de atacado e varejo (em vermelho).
+    Na coluna geração são mostrados os novos valores que entrarão em vigor assim
+    que a geração de preços for executada.
+  </p>
+  <div class="col-xs-5">
+    <h3>
+      Geração
+    </h3>
+    <p> R$ 111,55 (1.32)
+    </p>
+    <p class='cor-varejo'>
+      R$ 125,55
+    </p>
+    <p>Custo:
+      {{ novosPrecos.novoPrecoCusto | currency:"R$" }}</p>
+  </div>
+  <div class="col-xs-5">
+    <h3>Vigente</h3>
+    <p>
+      R$ 154,32 (1.32)
+    </p>
+    <p class='cor-varejo'>
+      R$ 125,55
+    </p>
+  </div>
 </section>
 <div>
   <div class="col-xs-offset-9 col-xs-9 form-group">
