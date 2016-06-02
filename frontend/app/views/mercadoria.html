@@ -84,7 +84,7 @@
           <td class="col-md-1">{{ c.quantidade }}</td>
           <td>
             <div ng-click="removerComponenteIndice()">
-              <span class="glyphicon glyphicon-remove vert-align" style="color:red;"></span>
+              <span class="glyphicon glyphicon-remove vert-align clickable" style="color:red;"></span>
             </div>
           </td>
         </tr>
@@ -99,7 +99,7 @@
             <input ng-model="novoComponenteCusto.quantidade" class="form-control" placeholder="" value="">
           </td>
           <td>
-            <span ng-click="adicionarComponente()" class="glyphicon glyphicon-plus vert-align"></span>
+            <span ng-click="adicionarComponente()" class="glyphicon glyphicon-plus vert-align clickable"></a>
           </td>
         </tr>
       </tbody>
@@ -139,9 +139,6 @@
     <h4>Custo</h4>
     <p>
       {{ novosPrecos.novoPrecoCusto | currency:"R$" }}
-    </p>
-    <p class='cor-varejo'>
-      R$ 125,55
     </p>
   </div>
 
