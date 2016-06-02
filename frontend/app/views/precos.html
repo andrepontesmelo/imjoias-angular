@@ -2,7 +2,6 @@
   <thread>
     <tr>
       <th>Data</th>
-      <th>Funcionário</th>
       <th>Ouro</th>
       <th>Juros</th>
       <th>Ação</th>
@@ -11,7 +10,6 @@
   <tbody>
     <tr ng-repeat="x in geracaoPrecos">
       <td><p ng-bind="x.data | date:'MM/dd/yyyy HH:mm'"></p></td>
-      <td>{{ x.funcionario }}</td>
       <td>{{ x.ouro }}</td>
       <td>{{ x.juros }}</td>
       <td>
