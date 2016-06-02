@@ -6,7 +6,13 @@ module ImjoiasGrape
     # GaracaoTabela
     class GeracaoTabela < Entidade
       def self.todas
-        bd[:geracaotabela].all
+        tabelas = bd[:geracaotabela].all
+
+        tabelas.each do | tabela |
+          tabela[:data] = tabela[:data].strftime("%Y%m%dT%H:%M:%S")
+        end
+
+        tabelas
       end
 
       def self.obtem(data)
