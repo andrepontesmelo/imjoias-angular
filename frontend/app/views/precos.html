@@ -4,7 +4,6 @@
       <th>Data</th>
       <th>Ouro</th>
       <th>Juros</th>
-      <th>Ação</th>
     </tr>
   </thread>
   <tbody>
@@ -14,11 +13,6 @@
       </td>
       <td>{{ x.ouro }}</td>
       <td>{{ x.juros }}</td>
-      <td>
-        <div ng-click="remover()">
-          <span class="glyphicon glyphicon-remove clickable" style="color:red"></span>
-        </div>
-      </td>
     </tr>
   </tbody>
 </table>
@@ -38,7 +32,6 @@
     <span class="input-group-addon">%</span>
     <input id="juros" type="text" class="form-control" aria-label="Percentual de juros">
   </div>
-
   <br/>
   <p>
     <a class="btn btn-primary btn-lg" href="#" role="button">Atualizar Agora</a>
