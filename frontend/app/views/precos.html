@@ -20,29 +20,26 @@
         </div>
       </td>
     </tr>
-    <tr>
-      <td>
-        <input ng-model="novaGeracao.Data" class="form-control" placeholder="" value="">
-      </td>
-      <td/>
-      <td>
-        <input ng-model="novaGeracao.Ouro" class="form-control" placeholder="" value="">
-      </td>
-      <td>
-        <input ng-model="novaGeracao.Juros" class="form-control" placeholder="" value="">
-      </td>
-
-      <td>
-        <span ng-click="adicionar()" class="glyphicon glyphicon-plus clickable"></span>
-      </td>
-    </tr>
-
   </tbody>
 </table>
 
 <div class="jumbotron">
   <h1>Preços e Índices</h1>
   <p>Cálculo de todos os índices, através dos componentes de custo. E atualização dos preços.</p>
+
+  <label for="ouro">Cotação do Ouro</label>
+  <div class="input-group">
+    <span class="input-group-addon">R$</span>
+    <input id="ouro" type="text" class="form-control" aria-label="Cotação do ouro para geração da tabela">
+  </div>
+
+  <label for="juros">Juros</label>
+  <div class="input-group">
+    <span class="input-group-addon">%</span>
+    <input id="juros" type="text" class="form-control" aria-label="Percentual de juros">
+  </div>
+
+  <br/>
   <p>
     <a class="btn btn-primary btn-lg" href="#" role="button">Atualizar Agora</a>
     <a class="btn btn-info btn-lg" href="#" role="button">Simulação</a>
