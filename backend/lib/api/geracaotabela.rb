@@ -3,7 +3,6 @@ require_relative '../negocio/geracaotabela'
 module ImjoiasGrape
   # Geracao de tabela de precos
   class GeracaoTabela < Grape::API
-
     resource :geracaotabela do
       get do
         tabelas = Negocio::GeracaoTabela.todas
@@ -26,7 +25,7 @@ module ImjoiasGrape
       end
       post do
         Negocio::GeracaoTabela.gera(params[:funcionario],
-                               params[:ouro], params[:juros])
+                                    params[:ouro], params[:juros])
       end
     end
   end
