@@ -1,7 +1,7 @@
 require 'grape'
-require_relative '../bd/mercadoria'
-require_relative '../bd/componente'
-require_relative '../bd/foto'
+require_relative '../negocio/mercadoria'
+require_relative '../negocio/componente'
+require_relative '../negocio/foto'
 
 module ImjoiasGrape
   # Mercadoria
@@ -14,12 +14,12 @@ module ImjoiasGrape
 
         get do
           retorno = {}
-          mercadoria = BD::Mercadoria.obter(params[:referencia])
+          mercadoria = Negocio::Mercadoria.obter(params[:referencia])
           retorno[:mercadoria] = mercadoria.entidadeSequel
-          retorno[:componentes] = BD::Componente.obter(params[:referencia])
+          retorno[:componentes] = Negocio::Componente.obter(params[:referencia])
           retorno[:novosPrecos] = mercadoria.novos_precos
           retorno[:novosPrecosVarejo] = mercadoria.novos_precos_varejo
-          retorno[:possuiFoto] = BD::Foto.possui_foto(params[:referencia])
+          retorno[:possuiFoto] = Negocio::Foto.possui_foto(params[:referencia])
           retorno
         end
 
@@ -29,14 +29,14 @@ module ImjoiasGrape
           requires :componentes, type: Array
         end
         put do
-          mercadoria = BD::Mercadoria.obter(params[:referencia])
+          mercadoria = Negocio::Mercadoria.obter(params[:referencia])
           mercadoria.atualizar(params[:mercadoria], params[:componentes])
           {}
         end
 
         resource :componentes do
           get do
-            BD::Componente.obter(params[:referencia])
+            Negocio::Componente.obter(params[:referencia])
           end
         end
 
@@ -47,7 +47,7 @@ module ImjoiasGrape
             header['Content-Disposition'] = "attachment; \
                     filename=#{referencia}.png"
             env['api.format'] = :binary
-            binario = BD::Foto.obter(referencia)
+            binario = Negocio::Foto.obter(referencia)
             error! :not_found, 404 if binario.nil?
             binario
           end
@@ -57,18 +57,18 @@ module ImjoiasGrape
 
     resource :mercadorias do
       get do
-        BD::Mercadoria.todas
+        Negocio::Mercadoria.todas
       end
 
       resource :componentes do
         get do
-          BD::Componente.todos
+          Negocio::Componente.todos
         end
       end
 
       resource :faixas do
         get do
-          BD::Faixa.todas
+          Negocio::Faixa.todas
         end
       end
     end

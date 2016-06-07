@@ -1,12 +1,12 @@
 require 'grape'
-require_relative '../bd/componente'
+require_relative '../negocio/componente'
 
 module ImjoiasGrape
   # Mercadoria
   class Componente < Grape::API
     resource :componentes do
       get do
-        BD::Componente.todos
+        Negocio::Componente.todos
       end
     end
   end

@@ -2,7 +2,7 @@ require_relative 'conexao'
 require_relative 'entidade'
 
 module ImjoiasGrape
-  module BD
+  module Negocio
     # Componentes de custo
     class Componente < Entidade
       def self.todos

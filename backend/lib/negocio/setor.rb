@@ -2,7 +2,7 @@ require_relative 'conexao'
 require_relative 'entidade'
 
 module ImjoiasGrape
-  module BD
+  module Negocio
     # Setor
     class Setor < Entidade
       def self.todos

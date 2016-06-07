@@ -1,18 +1,18 @@
 require 'grape'
-require_relative '../bd/setor'
-require_relative '../bd/faixa'
+require_relative '../negocio/setor'
+require_relative '../negocio/faixa'
 
 module ImjoiasGrape
   # Mercadoria
   class Setor < Grape::API
     resource :setores do
       get do
-        BD::Setor.todos
+        Negocio::Setor.todos
       end
 
       namespace ':atendimento' do
         get do
-          BD::Setor.todos_atendimento
+          Negocio::Setor.todos_atendimento
         end
       end
     end
@@ -24,8 +24,8 @@ module ImjoiasGrape
         end
 
         get do
-          setor = BD::Setor.obter(params[:codigo])
-          setor[:faixas] = BD::Faixa.obter(params[:codigo])
+          setor = Negocio::Setor.obter(params[:codigo])
+          setor[:faixas] = Negocio::Faixa.obter(params[:codigo])
           setor
         end
       end

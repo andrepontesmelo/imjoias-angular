@@ -2,7 +2,7 @@ require_relative 'conexao'
 require_relative 'entidade'
 
 module ImjoiasGrape
-  module BD
+  module Negocio
     # Faixa
     class Faixa < Entidade
       def self.todas

@@ -1,5 +1,5 @@
 module ImjoiasGrape
-  module BD
+  module Negocio
     # Base para entidades do banco de dados.
     class Entidade
       attr_accessor :entidadeSequel

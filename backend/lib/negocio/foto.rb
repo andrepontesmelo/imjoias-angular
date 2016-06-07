@@ -2,7 +2,7 @@ require_relative 'conexao'
 require_relative 'entidade'
 
 module ImjoiasGrape
-  module BD
+  module Negocio
     # Foto
     class Foto < Entidade
       def self.obter(referencia)
