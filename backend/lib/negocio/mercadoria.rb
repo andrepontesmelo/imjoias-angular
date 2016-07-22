@@ -37,7 +37,10 @@ module ImjoiasGrape
 
       def novos_precos
         bd.call_sproc 'lerParametrosGeracaoPrecos'
-        bd[:novosPrecos][mercadoria: entidadeSequel[:referencia]]
+        retorno = bd[:novosPrecos][mercadoria: entidadeSequel[:referencia]]
+        retorno['novoValorAtacado'] = 0;
+
+        retorno
       end
 
       def novos_precos_varejo
