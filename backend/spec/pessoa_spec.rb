@@ -7,14 +7,29 @@ module ImjoiasGrape
       ImjoiasGrape::API
     end
 
-    it 'Deve retornar lista de pessoas' do
+    it 'lista de pessoas deve retornar nome' do
       get "/api/#{app.version}/pessoas"
       expect(last_response.status).to eq(200)
       mercadoria = JSON.parse(last_response.body)[0]
 
       expect(mercadoria).to include('nome')
+    end
+
+    it 'lista de pessoas deve retornar codigo' do
+      get "/api/#{app.version}/pessoas"
+      expect(last_response.status).to eq(200)
+      mercadoria = JSON.parse(last_response.body)[0]
+
       expect(mercadoria).to include('codigo')
+    end
+
+    it 'lista de pessoas deve retornar cidade' do
+      get "/api/#{app.version}/pessoas"
+      expect(last_response.status).to eq(200)
+      mercadoria = JSON.parse(last_response.body)[0]
+
       expect(mercadoria).to include('cidade')
     end
+
   end
 end

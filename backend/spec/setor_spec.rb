@@ -7,13 +7,27 @@ module ImjoiasGrape
       ImjoiasGrape::API
     end
 
-    it 'Deve retornar lista de setores' do
+    it 'lista de setores deve retornar codigo' do
       get "/api/#{app.version}/setores"
       expect(last_response.status).to eq(200)
       setor = JSON.parse(last_response.body)[0]
 
       expect(setor).to include('codigo')
+    end
+
+    it 'lista de setores deve retornar nome' do
+      get "/api/#{app.version}/setores"
+      expect(last_response.status).to eq(200)
+      setor = JSON.parse(last_response.body)[0]
+
       expect(setor).to include('nome')
+    end
+
+    it 'lista de setores deve retornar atendimento' do
+      get "/api/#{app.version}/setores"
+      expect(last_response.status).to eq(200)
+      setor = JSON.parse(last_response.body)[0]
+
       expect(setor).to include('atendimento')
     end
 
@@ -23,8 +37,6 @@ module ImjoiasGrape
       setor = JSON.parse(last_response.body)
 
       expect(setor).to include('codigo')
-      expect(setor).to include('nome')
-      expect(setor).to include('atendimento')
     end
 
     it 'Deve retornar as faixas de um setor' do

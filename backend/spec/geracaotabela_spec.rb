@@ -7,14 +7,27 @@ module ImjoiasGrape
       ImjoiasGrape::API
     end
 
-    it 'Deve retornar lista de gerações de tabela de preço' do
+    it 'Lista de gerações de tabela de preço deve retornar data' do
       get "/api/#{app.version}/geracaotabela"
       expect(last_response.status).to eq(200)
       geracoes = JSON.parse(last_response.body)[0]
 
       expect(geracoes).to include('data')
-      expect(geracoes).to include('funcionario')
+    end
+
+    it 'Lista de gerações de tabela de preço deve retornar ouro' do
+      get "/api/#{app.version}/geracaotabela"
+      expect(last_response.status).to eq(200)
+      geracoes = JSON.parse(last_response.body)[0]
+
       expect(geracoes).to include('ouro')
+    end
+
+    it 'Lista de gerações de tabela de preço deve retornar juros' do
+      get "/api/#{app.version}/geracaotabela"
+      expect(last_response.status).to eq(200)
+      geracoes = JSON.parse(last_response.body)[0]
+
       expect(geracoes).to include('juros')
     end
 

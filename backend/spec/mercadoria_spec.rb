@@ -7,14 +7,35 @@ module ImjoiasGrape
       ImjoiasGrape::API
     end
 
-    it 'Deve retornar lista de mercadorias' do
+    it 'Lista de mercadorias deve retornar referenca' do
       get "/api/#{app.version}/mercadorias"
       expect(last_response.status).to eq(200)
       mercadoria = JSON.parse(last_response.body)[0]
 
       expect(mercadoria).to include('referencia')
+    end
+
+    it 'Lista de mercadorias deve retornar peso' do
+      get "/api/#{app.version}/mercadorias"
+      expect(last_response.status).to eq(200)
+      mercadoria = JSON.parse(last_response.body)[0]
+
       expect(mercadoria).to include('peso')
+    end
+
+    it 'Lista de mercadorias deve retornar nome' do
+      get "/api/#{app.version}/mercadorias"
+      expect(last_response.status).to eq(200)
+      mercadoria = JSON.parse(last_response.body)[0]
+
       expect(mercadoria).to include('nome')
+    end
+
+    it 'Lista de mercadorias deve retornar digito' do
+      get "/api/#{app.version}/mercadorias"
+      expect(last_response.status).to eq(200)
+      mercadoria = JSON.parse(last_response.body)[0]
+
       expect(mercadoria).to include('digito')
     end
 
@@ -29,9 +50,6 @@ module ImjoiasGrape
       mercadoria = JSON.parse(last_response.body)['mercadoria']
 
       expect(mercadoria).to include('referencia')
-      expect(mercadoria).to include('peso')
-      expect(mercadoria).to include('nome')
-      expect(mercadoria).to include('digito')
     end
 
     it 'Deve retornar uma mercadoria com dígito númerico' do
@@ -42,22 +60,43 @@ module ImjoiasGrape
       expect(digito).to be(6)
     end
 
-    it 'Deve retornar lista de componentes de custo de mercadorias.' do
+    it 'lista de componentes de custo de mercadorias deve retornar codigo' do
       get "/api/#{app.version}/mercadorias/componentes"
       expect(last_response.status).to eq(200)
       componente = JSON.parse(last_response.body)[0]
 
       expect(componente).to include('codigo')
+    end
+
+    it 'lista de componentes de custo de mercadorias deve retornar nome' do
+      get "/api/#{app.version}/mercadorias/componentes"
+      expect(last_response.status).to eq(200)
+      componente = JSON.parse(last_response.body)[0]
+
       expect(componente).to include('nome')
+    end
+
+    it 'lista de componentes de custo de mercadorias deve retornar valor' do
+      get "/api/#{app.version}/mercadorias/componentes"
+      expect(last_response.status).to eq(200)
+      componente = JSON.parse(last_response.body)[0]
+
       expect(componente).to include('valor')
     end
 
-    it 'Deve retornar lista de componentes de custo de uma mercadoria.' do
+    it 'lista de componentes de custo de uma mercadoria deve retornar componentecusto' do
       get "/api/#{app.version}/mercadoria/50901310900/componentes"
       expect(last_response.status).to eq(200)
       componente = JSON.parse(last_response.body)[0]
 
       expect(componente).to include('componentecusto')
+    end
+
+    it 'lista de componentes de custo de uma mercadoria deve retornar quantidade' do
+      get "/api/#{app.version}/mercadoria/50901310900/componentes"
+      expect(last_response.status).to eq(200)
+      componente = JSON.parse(last_response.body)[0]
+
       expect(componente).to include('quantidade')
     end
 
@@ -95,15 +134,30 @@ module ImjoiasGrape
       expect(novosPrecos).to include('novoValorAtacado')
     end
 
-    it 'Deve retornar todos os componentes de custo.' do
+    it 'Deve retornar codigo em todos os componentes de custo' do
       get "/api/#{app.version}/mercadorias/componentes"
       expect(last_response.status).to eq(200)
       componente = JSON.parse(last_response.body)[0]
 
       expect(componente['codigo']).not_to be_empty
+    end
+
+    it 'Deve retornar nome em todos os componentes de custo' do
+      get "/api/#{app.version}/mercadorias/componentes"
+      expect(last_response.status).to eq(200)
+      componente = JSON.parse(last_response.body)[0]
+
       expect(componente['nome']).not_to be_empty
+    end
+
+    it 'Deve retornar valor em todos os componentes de custo' do
+      get "/api/#{app.version}/mercadorias/componentes"
+      expect(last_response.status).to eq(200)
+      componente = JSON.parse(last_response.body)[0]
+
       expect(componente['valor']).not_to be_nil
     end
+
 
     it 'Deve retornar todas as faixas.' do
       get "/api/#{app.version}/mercadorias/faixas"
@@ -111,8 +165,6 @@ module ImjoiasGrape
       faixas = JSON.parse(last_response.body)
 
       expect(faixas).to include 'A'
-      expect(faixas).to include 'B'
-      expect(faixas).to include 'C'
     end
 
     it 'Deve alterar nome de uma mercadoria' do
@@ -185,7 +237,6 @@ module ImjoiasGrape
       get "/api/#{app.version}/mercadoria/10000101035"
       componente = JSON.parse(last_response.body)['componentes'][0]
 
-      expect(componente['componentecusto']).to eq('10')
       expect(componente['quantidade']).to eq(50)
     end
   end
