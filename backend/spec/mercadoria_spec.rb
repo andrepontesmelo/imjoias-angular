@@ -134,6 +134,15 @@ module ImjoiasGrape
       expect(novosPrecos).to include('novoValorAtacado')
     end
 
+    it 'Deve retornar novo valor em real de atacado válido.' do
+      get "/api/#{app.version}/mercadoria/50901310900"
+      expect(last_response.status).to eq(200)
+      mercadoria = JSON.parse(last_response.body)
+      valorAtacado = mercadoria['novosPrecos']['novoValorAtacado']
+
+      expect(valorAtacado).not_to be(0)
+    end
+
     it 'Deve retornar codigo em todos os componentes de custo' do
       get "/api/#{app.version}/mercadorias/componentes"
       expect(last_response.status).to eq(200)
