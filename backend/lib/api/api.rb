@@ -4,6 +4,7 @@ require_relative 'pessoa'
 require_relative 'setor'
 require_relative 'componente'
 require_relative 'geracaotabela'
+require_relative 'cotacao'
 
 module ImjoiasGrape
   # Classe de entrada da API
@@ -18,5 +19,6 @@ module ImjoiasGrape
     mount Setor
     mount Componente
     mount GeracaoTabela
+    mount Cotacao
   end
 end
